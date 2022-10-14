@@ -1,0 +1,31 @@
+{
+  "topRightMenu":{
+    "fullScreen": "full screen",
+    "help":"help document",
+    "language":"swap language"
+  },
+  "moreSetting":{
+    "title":"more setting",
+    "theme": "theme setting",
+    "themeDefault": "default",
+    "themeDark": "dark",
+    "themeLight": "light",
+    "nav": "navigation",
+    "navSider": "sider menu",
+    "navTop": "top menu",
+    "navSiderTop": "sider+top menu",
+    "other": "other setting",
+    "footer": "footer",
+    "mutiTab": "multi tab mode"
+  },
+  "common":{
+    "close":"close",
+    "open":"open",
+    "display":"visible",
+    "hide":"invisible",
+    "exit":"exit"
+  },
+  "confirm":{
+    "exit": "Are you exit?"
+  }
+}

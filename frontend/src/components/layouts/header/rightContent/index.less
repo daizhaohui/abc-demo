@@ -1,0 +1,27 @@
+.right-content{
+  float: right;
+  height: @fixed-header-height;
+  min-width: 200px;
+  white-space: nowrap;
+
+  // 子组件使用（deep() 穿透作用域)
+  :deep(.right-content-item) {
+    cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
+    transition: all 0.2s;
+    height: @fixed-header-height;
+    &:hover{
+      background-color: @primary-1;
+    }
+  }
+
+  :deep(.right-content-dark) {
+    color:#A6ADB4;
+    &:hover{
+      background-color:transparent;
+      color: #fff;
+    }
+  }
+
+}

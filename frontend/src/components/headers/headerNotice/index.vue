@@ -1,0 +1,72 @@
+<template>
+  <a-popover
+    class="header-notice"
+    placement="bottomRight"
+    overlay-class-name="notice-popover"
+    trigger="click"
+    :arrow-point-at-center="true"
+    @visible-change="handlePopupVisibleChange"
+  >
+    <span
+      :class="['right-content-item',{'right-content-dark':theme==='dark'||theme===''}]"
+      @click="handleNoticeClick"
+    >
+      <a-badge
+        :count="$States.Notice.count"
+      >
+        <icon-bell :class="['g-layout-icon',{'right-content-dark':theme==='dark'||theme===''}]" />
+      </a-badge>
+    </span>
+    <template #content>
+      <a-spin :spinning="$States.Notice.spinning">
+        <a-tabs
+          v-model:activeKey="activeKey"
+          @change="handleTabChange"
+        >
+          <a-tab-pane
+            key="1"
+            :tab="tabTitles.tab1"
+          >
+            <list
+              :data="noticeData.tab1"
+              :type="1"
+              empty-text="你已查看所有通知"
+              empty-image=""
+              @clear="hanldeClear"
+              @itemClick="handleItemClick"
+            />
+          </a-tab-pane>
+          <a-tab-pane
+            key="2"
+            :tab="tabTitles.tab2"
+          >
+            <list
+              :data="noticeData.tab2"
+              :type="2"
+              empty-text="你已查看所有消息"
+              empty-image=""
+              @clear="hanldeClear"
+              @itemClick="handleItemClick"
+            />
+          </a-tab-pane>
+          <a-tab-pane
+            key="3"
+            :tab="tabTitles.tab3"
+          >
+            <list
+              :data="noticeData.tab3"
+              :type="3"
+              empty-text="你已完成所有待办"
+              empty-image=""
+              @clear="hanldeClear"
+              @itemClick="handleItemClick"
+            />
+          </a-tab-pane>
+        </a-tabs>
+      </a-spin>
+    </template>
+  </a-popover>
+</template>
+
+<script src="./index.ts" lang="ts"></script>
+<style lang="less" scoped src='./index.less'></style>

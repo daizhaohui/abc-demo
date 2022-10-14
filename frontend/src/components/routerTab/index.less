@@ -1,0 +1,44 @@
+.router-tab{
+  
+  .tab-items{
+    height: @tabs-card-height;
+    white-space: nowrap;
+    background: @body-background;
+
+
+    .tab-item-wrapper{
+      display: flex;
+    }
+
+    .scroll-tab-items{
+      overflow-x:auto;
+      display: flex;
+    }
+
+    .line{
+      flex:1;
+      border-bottom: 1px solid @border-color-base;
+    }
+
+    .arrow-left{
+      height: @tabs-card-height;
+      width: 30;
+      min-width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid @border-color-base;
+    }
+
+    .arrow-right{
+      height: @tabs-card-height;
+      width: 30px;
+      min-width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid @border-color-base;
+    }
+
+  }
+}

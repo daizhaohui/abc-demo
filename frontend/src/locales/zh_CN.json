@@ -1,0 +1,31 @@
+{
+    "topRightMenu":{
+      "fullScreen": "全屏",
+      "help":"使用文档",
+      "language":"切换语言"
+    },
+    "moreSetting":{
+      "title":"更多设置",
+      "theme": "整体风格设置",
+      "themeDefault": "默认",
+      "themeDark": "暗色风格",
+      "themeLight": "亮色风格",
+      "nav": "导航设置",
+      "navSider": "侧边菜单",
+      "navTop": "顶部菜单",
+      "navSiderTop": "侧边栏+顶部菜单",
+      "other": "其它设置",
+      "footer": "页脚",
+      "mutiTab": "多页签模式"
+    },
+    "common":{
+      "close":"关闭",
+      "open":"打开",
+      "display":"显示",
+      "hide":"不显示",
+      "exit":"退出"
+    },
+    "confirm":{
+      "exit": "确认退出吗？"
+    }
+}

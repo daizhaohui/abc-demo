@@ -1,0 +1,51 @@
+.router-tab-item{
+  height: @tabs-card-height;
+  max-width: 200px;
+  min-width: 120px;
+  display: inline-block;
+  background-color: @body-background;
+  border: 1px solid @border-color-base;
+  border-top: none;
+  margin-top: 0;
+  margin-left: 1px;
+
+  .tab-item-container{
+    height: @tabs-card-height;
+    display: flex;
+    align-items: center;
+  }
+
+  .title{
+    flex:1;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .icon{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+  }
+
+  .close-inner :hover{
+    background-color: red;
+    color: white;
+  }
+
+  .close{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+  }
+}
+
+.actived{
+  background-color: #EFF1F4;
+  border-bottom: none;
+}

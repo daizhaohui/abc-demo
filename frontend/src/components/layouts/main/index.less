@@ -1,0 +1,27 @@
+.main-layout{
+  min-height: 100vh;
+}
+
+.main-layout-header{
+	height: @fixed-header-height;
+	line-height: @fixed-header-height;
+
+	.trigger{
+		cursor: pointer;
+		transition: color .2s;
+		&:hover{
+			color: @primary-color;
+		}
+	}
+
+
+.sider-header-wrapper{
+		height: @fixed-header-height;
+		position: relative;
+		padding: 0 0;
+		background: #fff;
+		border-bottom: @border-width-base @border-style-base @border-color-split;
+	}
+}
+
+

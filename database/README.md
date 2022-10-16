@@ -9,5 +9,6 @@ docker build -f Dockerfile -t abc-demo/mysql .
 # start docker image
 
 ```bash
-docker run  -v /var/mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=abc-demo -d abc-demo/mysql
+docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=abc-demo -d abc-demo/mysql
+docker run -p 3306:3306 -v /Users/zhaohui.dai/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=abc-demo -d abc-demo/mysql
 ```

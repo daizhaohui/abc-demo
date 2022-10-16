@@ -1,2 +1,1 @@
-FROM mysql:8.0
-VOLUME [ "/var/mysql" ]
+FROM mysql:8.0.26

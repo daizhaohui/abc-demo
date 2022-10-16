@@ -35,11 +35,11 @@ $ npm run test:cov
 
 ```bash
 npm run build
-docker rmi -f abc-demo/node
-docker build -f Dockerfile -t abc-demo/node .
+docker rmi -f abc-demo-node
+docker build -f Dockerfile -t abc-demo-node .
 ```
 
 # start docker image
 
 ```bash
-docker run -p 8002:8002 abc-demo/node
+docker run -p 8002:8002 abc-demo-node

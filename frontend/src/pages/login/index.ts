@@ -1,10 +1,7 @@
 import { defineComponent, reactive, ref, useRouter, onMounted } from '@lincy-vue/core';
 import { Message } from '@/components';
 import SendCaptchaButton from '@/components/sendCaptchaButton/index.vue';
-import GlobalState from '@/state';
 import { isPhone, trim } from '@lincy-js/utils/string';
-import Api from '@/api';
-import { ApiCode } from '@/model/consts';
 
 const drawBackGround = () => {
   const win: any = window;
@@ -93,8 +90,8 @@ export default defineComponent({
     const activeKey = ref('1');
     const start = ref(false);
     const formState: any = reactive({
-      password: '',
-      userId: '',
+      password: 'admin',
+      userId: 'admin',
       mobile: '',
       captcha: '',
       rememberMe: false
@@ -130,40 +127,15 @@ export default defineComponent({
         formRef.value.validate(['userId', 'password'], {
           firstFields: ['userId', 'password']
         }).then(() => {
-          disableLoginButton.value = true;
-          Message.loading('正在登录...', 0);
-          const router = useRouter();
-          Api.User.login({
-            data: {
-              account: formState.userId,
-              password: formState.password,
-              rememberMe: formState.rememberMe
-            }
-          }).then((res: any) => {
-            Message.destroy();
-            if (res.data && res.code === ApiCode.Success) {
-              // 更新用户信息
-              GlobalState.UserInfo.updateUser({
-                token: res.data.token,
-                userId: res.data.userId,
-                userName: res.data.userName,
-                permissions: res.data.permissions
-              });
-              router.push('home');
-            } else {
-              Message.error('无效的用户名或密码', 10);
-            }
+            disableLoginButton.value = true;
+            const router = useRouter();
+            router.push('home');
             disableLoginButton.value = false;
           });
-        }).catch(() => {
-          Message.destroy();
-          Message.error('服务器出错,请稍好再试！', 10);
-          disableLoginButton.value = false;
-        });
       } else if (activeKey.value === '2') {
         formRef.value.validate(['mobile', 'captcha']).then(() => {
           const router = useRouter();
-          router.push('main');
+          router.push('home');
         }).catch((error: any) => {
           console.log('error', error);
         });

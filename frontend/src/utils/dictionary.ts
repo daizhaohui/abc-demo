@@ -1,12 +1,6 @@
 import { DictionaryName } from '@/model/consts';
-
-// 角色类型
-const RoleType = [
-  {
-    value: 'role_system',
-    label: '系统类型'
-  }
-];
+import Api from '@/api';
+import GlobalState from  '@/state';
 
 // 语言
 const Languages = {
@@ -27,9 +21,30 @@ const Languages = {
 };
 
 const Dicionarys: any = {
-  [DictionaryName.RoleType]: RoleType,
   [DictionaryName.Language]: Languages
 };
+
+const getDictionaryItemByname =  async (name: string): Promise<IDictionaryItem[]> => {
+  let data: Record<string, any>;
+  if (!GlobalState.Dictionary.data || !GlobalState.Dictionary.data.name) {
+    data = await Api.Dictionary.getData()
+    data = data.code === Api.ResponseCode.Success ? data.data : {}
+  } else {
+    data = GlobalState.Dictionary.data;
+  }
+  return Promise.resolve((data[name] || []) as IDictionaryItem[]);
+}
+
+export interface ISelectionEntity {
+  label: string
+  value: string
+  data?: Record<string,any>
+}
+
+export interface IDictionaryItem {
+  [key: string]: string | number
+}
+
 
 // 字典相关操作逻辑, 字典表统一{label(显示名字),value(唯一值）}.可以直接绑定到控件上,不需要字段映射。
 export default class DictionaryUtil {
@@ -51,5 +66,56 @@ export default class DictionaryUtil {
       }
     }
     return null;
+  }
+  static async getAreas(): Promise<ISelectionEntity[]> {
+    const areas = await getDictionaryItemByname('areas');
+    return Promise.resolve(areas.map((item: IDictionaryItem) => {
+       return {
+        label: item.name,
+        value: item.code,
+       }
+    }) as ISelectionEntity[]);
+  }
+
+  static async getLines(): Promise<ISelectionEntity[]> {
+    const areas = await getDictionaryItemByname('lines');
+    return Promise.resolve(areas.map((item: IDictionaryItem) => {
+       return {
+        label: item.name,
+        value: item.code,
+        data: {
+          code: item.code,
+          areaCode: item.areaCode
+        },
+       }
+    }) as ISelectionEntity[]);
+  }
+
+  static async getStations(): Promise<ISelectionEntity[]> {
+    const areas = await getDictionaryItemByname('stations');
+    return Promise.resolve(areas.map((item: IDictionaryItem) => {
+       return {
+        label: item.name,
+        value: item.code,
+        data: {
+          code: item.code,
+          areaCode: item.areaCode,
+          lineCode: item.lineCode
+        },
+       }
+    }) as ISelectionEntity[]);
+  }
+
+  static async getCategories(): Promise<ISelectionEntity[]> {
+    const areas = await getDictionaryItemByname('categories');
+    return Promise.resolve(areas.map((item: IDictionaryItem) => {
+       return {
+        label: item.name,
+        value: item.code,
+        data: {
+          parentCode: item.parentCode,
+        },
+       }
+    }) as ISelectionEntity[]);
   }
 }

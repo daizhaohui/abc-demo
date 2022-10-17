@@ -79,17 +79,15 @@ const CustomServiceNames = {
   Menu: 'menu'
 };
 
-// api返回的code
-const ApiCode = {
-  Success: '00000'
-};
 
 // 数据字典表
 const DictionaryName = {
-  // 角色类型
-  RoleType: 'roleType',
   // 语言
-  Language: 'Language'
+  Language: 'Language',
+  Area: 'Area',
+  Line: 'Line',
+  Category: 'Category',
+  Station: 'Station'
 };
 
 export {
@@ -99,7 +97,6 @@ export {
   SettingType,
   GlobalEvents,
   CustomServiceNames,
-  ApiCode,
   DictionaryName,
   PageLayout
 };

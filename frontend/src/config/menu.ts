@@ -20,28 +20,22 @@ const menus = [
     parentId: '',
     children: [
       {
-        id: 'systemSetting',
-        text: '系统设置',
+        id: 'videoManage',
+        text: '视频管理',
         parentId: 'systemManage',
-        children: [
-          {
-            id: 'menuManage',
-            text: '菜单管理',
-            route: 'menu', // 路由名字
-            parentId: 'sysSettings'
-          },
-          {
-            id: 'dicManage',
-            text: '字典管理',
-            parentId: 'sysSettings'
-          }
-        ]
+        route: 'video'// 路由名字
       },
       {
-        id: 'org',
-        text: '机构管理',
+        id: 'pictureManage',
+        text: '图片管理',
         parentId: 'systemManage',
-        route: 'org'// 路由名字
+        route: 'picture'// 路由名字
+      },
+      {
+        id: 'taskManage',
+        text: '任务管理',
+        parentId: 'systemManage',
+        route: 'task'// 路由名字
       }
     ]
   }

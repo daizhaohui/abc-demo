@@ -17,7 +17,7 @@
             <icon-copyright-circle
               class="g-layout-icon"
               style="font-size:14px;"
-            /> 2021 Capagemini China CSD
+            /> 2021 Daizhaohui
           </div>
         </div>
       </div>

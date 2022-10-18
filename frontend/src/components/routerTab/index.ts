@@ -317,9 +317,17 @@ export default defineComponent({
       reComputeScrollButtonsVisibleDisabled();
     };
 
+    const onMenuFoldUnFold = () => {
+      nextTick(()=>{
+        reComputeStyle();
+        reComputeScrollButtonsVisibleDisabled();
+      });
+    };
+
     onMounted(() => {
       emitter.on(GlobalEvents.OnWindowSizeChange, onWindowSizeChange);
       emitter.on(GlobalEvents.OnDocumentLoaded, onDocumentLoaded);
+      emitter.on(GlobalEvents.OnMenuFoldUnFold, onMenuFoldUnFold);
 
       // 执行路由前，在插件router.js中的beforeEach后执行。to为跳转的路由信息，from为从那个路由跳转
       hookHandler = router.beforeEachHook((to: IRouteLocationNormalized, from: IRouteLocationNormalized) => {
@@ -393,6 +401,7 @@ export default defineComponent({
       router.offHook(hookHandler);
       emitter.off(GlobalEvents.OnWindowSizeChange, onWindowSizeChange);
       emitter.off(GlobalEvents.OnDocumentLoaded, onDocumentLoaded);
+      emitter.off(GlobalEvents.OnMenuFoldUnFold, onMenuFoldUnFold);
     });
 
     return {

@@ -191,11 +191,27 @@ export default defineComponent({
     // 展开菜单
     const onUnfold = () => {
       menuIsCollapsed.value = false;
+      setTimeout(()=>{
+        emitter.emit(GlobalEvents.OnMenuFoldUnFold, {
+          target: 'foldUnFold',
+          args: {
+            data: false
+          }
+        });
+      }, 180)
     };
 
     // 折叠菜单
     const onFold = () => {
       menuIsCollapsed.value = true;
+      setTimeout(()=>{
+        emitter.emit(GlobalEvents.OnMenuFoldUnFold, {
+          target: 'foldUnFold',
+          args: {
+            data: true
+          }
+        });
+      }, 180)
     };
 
     // 窗体宽度变小到一定程度后,收缩其菜单

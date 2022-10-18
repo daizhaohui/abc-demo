@@ -70,7 +70,9 @@ const GlobalEvents = {
   // 主布局框架组件加载完毕
   OnMainLayoutMounted: 'mainLayoutMounted',
   // 打开抽屉设置
-  OnShowDrawerSetting: 'showDrawerSetting'
+  OnShowDrawerSetting: 'showDrawerSetting',
+  // 菜单折叠打开事件
+  OnMenuFoldUnFold: 'menuFoldUnFold'
 };
 
 // 自定义的全局服务名字

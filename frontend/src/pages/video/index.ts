@@ -1,7 +1,6 @@
-import { defineComponent, reactive, ref, toRefs, onMounted, useRouter, inject, nextTick, watch, useRoute } from '@lincy-vue/core';
+import { defineComponent, reactive, ref, toRefs, onMounted } from '@lincy-vue/core';
 import Api from '@/api';
 import PaginationUtil from '@/utils/pagination';
-import { IRouteLocationNormalized, IRouterService } from '@lincy-vue/core/types';
 import VideoModal from '@/components/videoModal'
 
 interface IDataItem {
@@ -32,8 +31,6 @@ export default defineComponent({
   setup () {
     const spinning = ref(false);
     const contentHeight = ref('600px');
-    const router: IRouterService = useRouter();
-    const route: IRouteLocationNormalized = useRoute();
     // 查询条件数据
     const formState = reactive({
       area: '',
@@ -43,6 +40,7 @@ export default defineComponent({
     const state = reactive({
       videoModalVisible: false,
       videoOptions: null,
+      spinning: false
     })
     const dataSource = ref([] as IDataItem[]);
     const pagination = PaginationUtil.createPagination((p: any) => { loadData(p); });

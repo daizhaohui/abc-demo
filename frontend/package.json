@@ -50,9 +50,7 @@
     "@lincy-js/utils": "file:lib/lincy-js-utils-1.0.0.tgz",
     "@lincy-vue/cli": "file:lib/lincy-vue-cli-1.0.0.tgz",
     "@lincy-vue/core": "file:lib/lincy-vue-core-1.0.0.tgz",
-    "ant-design-vue": "^2.2.2",
-    "xgplayer": "^2.32.1",
-    "xgplayer-hls.js": "^2.6.3"
+    "ant-design-vue": "^2.2.2"
   },
   "browserslist": [
     "> 1%",

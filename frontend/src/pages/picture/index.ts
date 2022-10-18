@@ -1,8 +1,8 @@
-import { defineComponent, reactive, ref, toRefs, onMounted, useRouter, inject, nextTick, watch, useRoute } from '@lincy-vue/core';
+import { defineComponent, reactive, ref, toRefs, onMounted, useRouter, useRoute } from '@lincy-vue/core';
 import Api from '@/api';
 import PaginationUtil from '@/utils/pagination';
 import { IRouteLocationNormalized, IRouterService } from '@lincy-vue/core/types';
-import VideoModal from '@/components/videoModal'
+import PictureEditModal from './pictureEdit'
 
 interface IDataItem {
   title: string;
@@ -24,7 +24,7 @@ const data: IDataItem[] = [
 
 export default defineComponent({
   components: {
-    'video-modal': VideoModal,
+    'picture-edit-modal': PictureEditModal,
   },
   props: {
 
@@ -41,8 +41,8 @@ export default defineComponent({
       station: '',
     });
     const state = reactive({
-      videoModalVisible: false,
-      videoOptions: null,
+      pictureModalVisible: false,
+      pictureOptions: null,
     })
     const dataSource = ref([] as IDataItem[]);
     const pagination = PaginationUtil.createPagination((p: any) => { loadData(p); });
@@ -62,7 +62,7 @@ export default defineComponent({
     };
 
     const handleEdit = (item: IDataItem) => {
-      state.videoModalVisible = true;
+      state.pictureModalVisible = true;
     };
 
 

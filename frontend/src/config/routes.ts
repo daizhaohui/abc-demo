@@ -36,7 +36,7 @@ const routes = [
       },
       {
         name: 'picture',
-       // component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/system/addEditOrg'),
+        component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/picture'),
         path: 'picture',
         meta: {
           title: '图片管理',
@@ -45,7 +45,7 @@ const routes = [
       },
       {
         name: 'task',
-       // component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/system/addEditOrg'),
+        component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/task'),
         path: 'task',
         meta: {
           title: '任务管理',

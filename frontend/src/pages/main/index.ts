@@ -7,7 +7,6 @@ import { GlobalEvents, HeaderRightContentItems, SettingType, PageLayout, Themes 
 import MenuItems from '@/config/menu';
 import { setLocale } from '@lincy-vue/core/lang';
 import { hasTheme, setTheme } from '@lincy-vue/core/theme';
-import Api from '@/api';
 import { IRouterService, Emitter } from '@lincy-vue/core/types';
 
 // {key:'home',title:'首页',href:'http://www.xxx.com/xxxx',blankTarget:true}
@@ -142,7 +141,6 @@ export default defineComponent({
       });
       // 退出 (统一处理的地方)
       emitter.on(GlobalEvents.OnLogout, () => {
-        Api.User.logout();
         // 清理工作，然后跳转到登录页面
         // 用户信息恢复成定义的初始化值
         reset(GlobalState.UserInfo);

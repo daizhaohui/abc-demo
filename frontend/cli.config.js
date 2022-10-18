@@ -1,7 +1,16 @@
 module.exports = (mode) => {
   if (mode === 'development') {
     return {
-      injects: [],
+      injects: [
+        {
+          position: 'header',  
+          content: '<script src="//unpkg.byted-static.com/xgplayer/2.31.6/browser/index.js" charset="utf-8"></script>'
+        },
+        {
+          position: 'header',  
+          content: '<script src="//unpkg.byted-static.com/xgplayer-hls/2.5.2/dist/index.min.js" charset="utf-8"></script>'
+        },
+      ],
       devServer: {
         port: 8082,
         proxy: {
@@ -23,7 +32,16 @@ module.exports = (mode) => {
     };
   } else if (mode === 'production') {
     return {
-      injects: [],
+      injects: [
+        {
+          position: 'header',  
+          content: '<script src="//unpkg.byted-static.com/xgplayer/2.31.6/browser/index.js" charset="utf-8"></script>'
+        },
+        {
+          position: 'header',  
+          content: '<script src="//unpkg.byted-static.com/xgplayer-hls/2.5.2/dist/index.min.js" charset="utf-8"></script>'
+        },
+      ],
       theme: {
         enabled: true,
         default: ''

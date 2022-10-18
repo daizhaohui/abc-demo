@@ -29,7 +29,9 @@
       <div
         :style="contentStyle"
       >
+      <div class="content-wrapper">
         <slot />
+      </div>
       </div>
     </a-spin>
   </div>

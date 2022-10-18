@@ -1,6 +1,7 @@
 declare interface Window {
   ActiveXObject: any
   addEventListener: (...args: any[]) => any
+  HlsPlayer: any
 }
 
 declare module '*.vue' {

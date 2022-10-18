@@ -27,19 +27,28 @@ const routes = [
       },
       // 跟router-view对应起来，只有两层
       {
-        name: 'org',
-       // component: async () => await import(/* webpackChunkName: "org" */'@/pages/system/org'),
-        path: 'org',
+        name: 'video',
+        component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/video'),
+        path: 'video',
         meta: {
-          title: '机构管理'
+          title: '视频管理'
         }
       },
       {
-        name: 'addOrg',
-       // component: async () => await import(/* webpackChunkName: "org" */'@/pages/system/addEditOrg'),
-        path: 'org/add',
+        name: 'picture',
+       // component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/system/addEditOrg'),
+        path: 'picture',
         meta: {
-          title: '新增机构',
+          title: '图片管理',
+          icon: '' // 导航或页签页面图标
+        }
+      },
+      {
+        name: 'task',
+       // component: async () => await import(/* webpackChunkName: "sysem-manage" */'@/pages/system/addEditOrg'),
+        path: 'task',
+        meta: {
+          title: '任务管理',
           icon: '' // 导航或页签页面图标
         }
       }

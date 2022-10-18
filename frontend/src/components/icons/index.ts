@@ -139,7 +139,7 @@ const IconComponents = {
   'icon-global': GlobalOutlined,
   'icon-info-circle': InfoCircleOutlined,
   'icon-caret-up': CaretUpOutlined,
-  'icon-caret-down': CaretDownOutlined
+  'icon-caret-down': CaretDownOutlined,
 };
 
 // icons进行统一管理

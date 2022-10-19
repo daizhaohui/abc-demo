@@ -21,7 +21,7 @@ export default class DictionaryEntity {
     description: '所有地铁站信息',
     type: [StationEntity],
   })
-  statations: StationEntity[];
+  stations: StationEntity[];
 
   @ApiProperty({
     description: '所有分类',

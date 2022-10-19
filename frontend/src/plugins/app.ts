@@ -1,6 +1,6 @@
 // import { useAuth } from '@lincy-vue/core/auth';
 
-import MenuService from '@/utils/services/menu';
+import MenuService from '@/utils/menu';
 import MenuItems from '@/config/menu';
 import { CustomServiceNames } from '@/model/consts';
 import GlobalState from '@/state';

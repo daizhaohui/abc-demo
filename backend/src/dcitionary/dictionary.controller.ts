@@ -27,7 +27,7 @@ export default class DictionaryController {
           const entity = new DictionaryEntity();
           entity.areas = result[0];
           entity.lines = result[1];
-          entity.statations = result[2];
+          entity.stations = result[2];
           entity.categories = result[3];
           resolve(ResponseUtil.success(entity));
         })

@@ -15,7 +15,7 @@ module.exports = (mode) => {
         port: 8082,
         proxy: {
           '/api': {
-            target: 'http://chinacoe.lincy.com:8081',
+            target: 'http://127.0.0.1:8002',
             pathRewrite: { '^/api': '' }
           }
         }

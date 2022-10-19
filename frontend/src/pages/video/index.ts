@@ -1,25 +1,18 @@
 import { defineComponent, reactive, ref, toRefs, onMounted } from '@lincy-vue/core';
 import Api from '@/api';
 import PaginationUtil from '@/utils/pagination';
-import VideoModal from '@/components/videoModal'
-
-interface IDataItem {
-  title: string;
+import VideoModal from '@/components/videoModal';
+import DictionaryUtil, {ISelectionEntity, IAllDictionary } from '@/utils/dictionary';
+import { IQueryState, IVideo } from '@/model';
+interface IState {
+  videoModalVisible: boolean,
+  videoOptions: Record<string, string> | null,
+  spinning: boolean,
+  areaOptions: ISelectionEntity[],
+  lineOptions: ISelectionEntity[],
+  stationOptions: ISelectionEntity[],
+  dataSource: IVideo[],
 }
-const data: IDataItem[] = [
-  {
-    title: 'Title 1',
-  },
-  {
-    title: 'Title 2',
-  },
-  {
-    title: 'Title 3',
-  },
-  {
-    title: 'Title 4',
-  },
-];
 
 export default defineComponent({
   components: {
@@ -29,52 +22,80 @@ export default defineComponent({
 
   },
   setup () {
-    const spinning = ref(false);
     const contentHeight = ref('600px');
+    let dicionary: IAllDictionary;
     // 查询条件数据
-    const formState = reactive({
+    const queryState = reactive<IQueryState>({
       area: '',
       line: '',
       station: '',
     });
-    const state = reactive({
+    const state = reactive<IState>({
       videoModalVisible: false,
       videoOptions: null,
-      spinning: false
+      spinning: false,
+      areaOptions: [],
+      lineOptions: [],
+      stationOptions: [],
+      dataSource: []
     })
-    const dataSource = ref([] as IDataItem[]);
     const pagination = PaginationUtil.createPagination((p: any) => { loadData(p); });
+
     // 重置查询条件按钮事件
     const onReset = () => {
-      formState.area = '';
-      formState.line = '';
-      formState.station = '';
+      queryState.area =  dicionary.areas.length ?  dicionary.areas[0].value : '';
+      queryState.line = '';
+      queryState.station = '';
     };
 
     // 点击查询
     const onQuery = () => {
     };
 
-    const loadData = (p?: any) => {
-      dataSource.value = data;
+    //初始化下拉选择框
+    const init = async () => {
+      dicionary = await DictionaryUtil.getAllDictionary();
+      state.areaOptions = dicionary.areas;
+      if(dicionary.areas.length) {
+        queryState.area = dicionary.areas[0].value;
+        state.lineOptions = DictionaryUtil.createLineOptions(dicionary.lines, queryState.area);
+        state.stationOptions = DictionaryUtil.createStationOptions(dicionary.stations, '', '');
+      }
     };
 
-    const handleEdit = (item: IDataItem) => {
+    const loadData = async (p?: any) => {
+      state.spinning = true;
+
+      state.spinning = false;
+    };
+
+    const handleEdit = (item: IVideo) => {
       state.videoModalVisible = true;
     };
 
+    const handleAreaChange = (value: string) =>{
+      state.lineOptions = DictionaryUtil.createLineOptions(dicionary.lines, queryState.area);
+      queryState.line = '';
+      queryState.station = '';
+    };
+
+    const handleLineChange = (value: string) =>{
+      state.stationOptions = DictionaryUtil.createStationOptions(dicionary.stations, queryState.area, queryState.line);
+      queryState.station = '';
+    };
 
     onMounted(() => {
+      init();
       loadData()
     });
 
     return {
       ...toRefs(state),
-      dataSource,
-      formState,
+      queryState,
       contentHeight,
-      spinning,
       pagination,
+      handleAreaChange,
+      handleLineChange,
       handleEdit,
       onReset,
       onQuery

@@ -26,7 +26,7 @@ const MenuLayout = {
   // 顶部菜单布局
   Top: 'topMenu',
   // 顶部和侧边菜单相结合
-  SiderTop: 'siderTopMenu'
+  SiderTop: 'siderTopMenu'
 };
 
 // 页面组件布局

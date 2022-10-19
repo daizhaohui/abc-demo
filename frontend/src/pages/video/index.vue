@@ -12,7 +12,7 @@
       <div class="list g-card-radius">
         <query-condition
           :count="3"
-          :model="formState"
+          :model="queryState"
           @reset="onReset"
           @query="onQuery"
         >
@@ -22,7 +22,9 @@
               name="area"
             >
             <a-select
-              v-model:value="area"
+              v-model:value="queryState.area"
+              :options="areaOptions"
+              @change="handleAreaChange"
             ></a-select>
             </a-form-item>
           </template>
@@ -32,7 +34,9 @@
               name="line"
             >
             <a-select
-              v-model:value="line"
+              v-model:value="queryState.line"
+              :options="lineOptions"
+              @change="handleLineChange"
             ></a-select>
             </a-form-item>
           </template>
@@ -42,7 +46,8 @@
               name="station"
             >
             <a-select
-              v-model:value="station"
+              v-model:value="queryState.station"
+              :options="stationOptions"
             ></a-select>
             </a-form-item>
           </template>

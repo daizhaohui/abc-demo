@@ -7,5 +7,5 @@ export default class DictionaryState {
   static data: Record<string, any[]>
 
   @Action()
-  static update () {}
+  static update (options: {data:  Record<string, any[]>}) {}
 }

@@ -11,7 +11,7 @@ export default class VideoController {
   private readonly logger = new Logger('VideoController');
   constructor(private readonly videoService: VideoService) {}
 
-  @Get(':id')
+  @Get('/detail/:id')
   @ApiOperation({ summary: 'get a video detail' })
   @ApiResponse({ status: 200, description: 'return a video detail' })
   async getDeatil(@Param('id') id: string): Promise<ResponseEntity> {
@@ -27,7 +27,7 @@ export default class VideoController {
     // 正常情况下，要检查输入值的有效性
     const queryConditon: IRequestPageEntity<IVideoQueryCondition> = {
       current: 1,
-      pageSize: 10,
+      pageSize: 16,
       params: {
         area: '',
         line: '',
@@ -38,16 +38,16 @@ export default class VideoController {
       queryConditon.current = parseInt(query.current);
     }
     if (query.pageSize) {
-      queryConditon.current = parseInt(query.pageSize);
+      queryConditon.pageSize = parseInt(query.pageSize);
     }
     if (query.area) {
-      query.params.area = query.area;
+      queryConditon.params.area = query.area;
     }
     if (query.line) {
-      query.params.line = query.line;
+      queryConditon.params.line = query.line;
     }
     if (query.station) {
-      query.params.station = query.station;
+      queryConditon.params.station = query.station;
     }
     const list = await this.videoService.getList(queryConditon);
     return Promise.resolve(ResponseUtil.success(list));

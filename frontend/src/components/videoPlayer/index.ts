@@ -4,14 +4,12 @@ export default defineComponent({
   components: {},
   props:{
     url: {
-    type: String,
-    default: () =>
-      "//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/hls/xgplayer-demo.m3u8",
+      type: String,
+      default: '',
     },
     poster: {
       type: String,
-      default: () =>
-        "http://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg",
+      default: 'http://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg'
     }
   },
   setup (props: any) {
@@ -20,25 +18,30 @@ export default defineComponent({
     const initPlayer = (url: string, poster: string) => {
       player = new window.HlsPlayer({
         id: 'video-player', // 上面容器的id选择器
-        url: '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/hls/xgplayer-demo.m3u8',
+        url,
         autoplay: true, // 自动播放
-        poster: poster, // 海报
+        poster,
         playsinline: true,
         height: '100%',
         width: '100%'
       });
     }
 
+    const destroyPalyer = () => {
+      try {
+        player && player.destroy()
+      } catch {}
+    }
+
     watch(props.url, (url: string)=>{
+      destroyPalyer();
       initPlayer(url, props.poster);
     });
     onMounted(() => {
       initPlayer(props.url, props.poster);
     });
     onUnmounted(()=>{
-      try {
-        player && player.destroy()
-      } catch {}
+      destroyPalyer();
     })
   }
 

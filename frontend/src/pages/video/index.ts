@@ -20,7 +20,6 @@ export default defineComponent({
     'video-modal': VideoModal,
   },
   props: {
-
   },
   setup () {
     const contentHeight = ref('600px');
@@ -40,7 +39,7 @@ export default defineComponent({
       stationOptions: [],
       dataSource: []
     })
-    const pagination = PaginationUtil.createPagination((p: IPagination) => { loadData(p); });
+    const pagination = PaginationUtil.createListPagination((p: IPagination) => { loadData(p); }, {});
 
     // 重置查询条件按钮事件
     const onReset = () => {
@@ -51,6 +50,7 @@ export default defineComponent({
 
     // 点击查询
     const onQuery = () => {
+      pagination.current = 1;
       loadData(pagination);
     };
 
@@ -76,7 +76,7 @@ export default defineComponent({
 
     const loadData = async (p: IPagination) => {
       const params = createQueryParams(p);
-      if (params.area) {
+      if (!params.area) {
         Message.warn('请选择地区条件！');
         return;
       }
@@ -86,7 +86,8 @@ export default defineComponent({
           params
         })
         if( result.data && result.data.code === Api.ResponseCode.Success) {
-          state.dataSource = result.data.data
+          pagination.total = result.data.data.total;
+          state.dataSource = result.data.data.data;
         } else {
           Message.error(result.data.message || '加载失败,请稍后再试！');
         } 
@@ -101,6 +102,10 @@ export default defineComponent({
     };
 
     const handleEdit = (item: IVideo) => {
+      state.videoOptions = {
+        url: item.url,
+        poster: item.thumbnail
+      }
       state.videoModalVisible = true;
     };
 

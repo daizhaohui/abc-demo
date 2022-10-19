@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { VideoEntity } from './video.entity';
-import { IVideoQueryCondition } from './index';
+import { PictureEntity } from './picture.entity';
+import { IPictureQueryCondition } from './index';
 import { IRequestPageEntity, IResponsePagingEntity } from '../common';
 
 @Injectable()
-export default class DictionaryService {
+export default class PictureService {
   constructor(
-    @InjectRepository(VideoEntity)
-    private videoRepository: Repository<VideoEntity>,
+    @InjectRepository(PictureEntity)
+    private pictureRepository: Repository<PictureEntity>,
   ) {}
 
   async getList(
-    queryCondtion: IRequestPageEntity<IVideoQueryCondition>,
-  ): Promise<IResponsePagingEntity<VideoEntity>> {
+    queryCondtion: IRequestPageEntity<IPictureQueryCondition>,
+  ): Promise<IResponsePagingEntity<PictureEntity>> {
     const createQuery = (
-      condition: IRequestPageEntity<IVideoQueryCondition>,
+      condition: IRequestPageEntity<IPictureQueryCondition>,
     ) => {
-      const query = this.videoRepository.createQueryBuilder('video');
+      const query = this.pictureRepository.createQueryBuilder('picture');
       query.andWhere('area = :area', { area: condition.params.area });
       if (condition.params.line) {
         query.andWhere('line = :line', { line: condition.params.line });
@@ -26,6 +26,16 @@ export default class DictionaryService {
       if (condition.params.station) {
         query.andWhere('station = :station', {
           station: condition.params.station,
+        });
+      }
+      if (condition.params.category) {
+        query.andWhere('category = :category', {
+          category: condition.params.category,
+        });
+      }
+      if (condition.params.labeled) {
+        query.andWhere('labeled = :labeled', {
+          labeled: condition.params.labeled,
         });
       }
       return query;
@@ -48,8 +58,22 @@ export default class DictionaryService {
   }
 
   async getDetail(id: number) {
-    const query = this.videoRepository.createQueryBuilder('video');
+    const query = this.pictureRepository.createQueryBuilder('picture');
     query.where('id = :id', { id });
     return await query.getOne();
+  }
+
+  async save(id: number, body: PictureEntity) {
+    const query = this.pictureRepository.createQueryBuilder('picture');
+    query.where('id = :id', { id });
+    const entity = await query.getOne();
+    if (body.category) {
+      entity.category = body.category;
+    }
+    if (body.label) {
+      entity.label = body.label;
+    }
+    entity.labeled = 1;
+    return await this.pictureRepository.save(entity);
   }
 }

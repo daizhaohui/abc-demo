@@ -2,6 +2,7 @@
 import { reactive } from '@lincy-vue/core';
 
 type PageChange = (page: number, pageSize: number) => void;
+type OnPageChange = (pagination: IPagination) => void;
 
 export interface IPagination {
   current: number
@@ -13,7 +14,7 @@ export interface IPagination {
 
 export default class PaginationUtil {
   // loadDataFunction为加载数据回调，参数为创建的pagination对象
-  static createPagination (loadDataFunction: any) {
+  static createPagination (loadDataFunction: OnPageChange, options:any) {
     const pagination = reactive({
       current: 1,
       pageSize: 10,
@@ -27,8 +28,17 @@ export default class PaginationUtil {
         pagination.current = current;
         pagination.pageSize = size;
         loadDataFunction(pagination);
-      }
+      },
+      ...options
     });
     return pagination;
+  }
+
+  static createListPagination(loadDataFunction: OnPageChange, options:any) {
+    return PaginationUtil.createPagination(loadDataFunction, {
+      pageSizeOptions: ['16', '32', '64', '80'],
+      pageSize: 16,
+      ...options,
+    })
   }
 }

@@ -74,6 +74,6 @@ export class VideoEntity extends BaseEntity {
     description: '创建时间',
     type: String,
   })
-  @Column({ type: 'datetime', name: 'createTime' })
+  @Column({ type: 'datetime', name: 'create_time' })
   createTime: string;
 }

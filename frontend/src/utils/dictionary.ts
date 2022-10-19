@@ -145,4 +145,32 @@ export default class DictionaryUtil {
       ...stations.filter((item: ISelectionEntity)=>item.data?.areaCode===areaCode && item.data?.lineCode===lineCode)
     ] as ISelectionEntity[]
   }
+
+  static createCategoryOptions (categories: ISelectionEntity[]): ISelectionEntity[] {
+    return [
+      {
+        label: '全部',
+        value: '',
+        data: {}
+      },
+      ...categories,
+    ] as ISelectionEntity[];
+  }
+
+  static createLabeledOptions (): ISelectionEntity[] {
+    return [
+      {
+        label: '全部',
+        value: ''
+      },
+      {
+        label: '未打标签',
+        value: '0'
+      },
+      {
+        label: '已打标签',
+        value: '1'
+      },
+    ] as ISelectionEntity[]
+  }
 }

@@ -4,25 +4,27 @@
     :show-back="false"
     :title="图片管理"
   >
-    <picture-edit-modal v-model:visible="pictureModalVisible" :video="pictureOptions" />
+    <picture-modal v-model:visible="pictureModalVisible" :picture="picture"  @onUpdate="hanldeOnUpdate"/>
     <div
-      class="video-manage"
+      class="picture-manage"
       :style="{height: contentHeight}"
     >
       <div class="list g-card-radius">
         <query-condition
           :count="5"
-          :model="formState"
+          :model="queryState"
           @reset="onReset"
           @query="onQuery"
         >
-          <template #condition1>
+        <template #condition1>
             <a-form-item
               label="地区"
               name="area"
             >
             <a-select
-              v-model:value="area"
+              v-model:value="queryState.area"
+              :options="areaOptions"
+              @change="handleAreaChange"
             ></a-select>
             </a-form-item>
           </template>
@@ -32,7 +34,9 @@
               name="line"
             >
             <a-select
-              v-model:value="line"
+              v-model:value="queryState.line"
+              :options="lineOptions"
+              @change="handleLineChange"
             ></a-select>
             </a-form-item>
           </template>
@@ -42,17 +46,19 @@
               name="station"
             >
             <a-select
-              v-model:value="station"
+              v-model:value="queryState.station"
+              :options="stationOptions"
             ></a-select>
             </a-form-item>
           </template>
           <template #condition4>
             <a-form-item
               label="是否打标签"
-              name="label"
+              name="labeled"
             >
             <a-select
-              v-model:value="label"
+              v-model:value="queryState.labeled"
+              :options="labeledOptions"
             ></a-select>
             </a-form-item>
           </template>
@@ -62,7 +68,8 @@
               name="category"
             >
             <a-select
-              v-model:value="category"
+              v-model:value="queryState.category"
+              :options="categoryOptions"
             ></a-select>
             </a-form-item>
           </template>
@@ -77,14 +84,14 @@
               <a-list-item>
                 <a-card hoverable>
                   <template #cover>
-                    <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="height: 100px;" />
+                    <img alt="example" :src="item.thumbnail" style="height: 200px;" />
                   </template>
                   <template #actions>
                     <icon-delete />
                     <icon-edit  @click="handleEdit(item)"/>
                     <icon-ellipsis  />
                   </template>
-                  <a-card-meta :title="item.title">
+                  <a-card-meta :title="item.title||''">
                     <template #description></template>
                   </a-card-meta>
                 </a-card>

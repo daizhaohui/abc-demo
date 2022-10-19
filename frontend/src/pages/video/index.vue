@@ -54,7 +54,7 @@
         </query-condition>
         <div style="margin-top:16px;">
           <a-list
-            :grid="{ gutter: 16, xs: 1, sm: 1, md: 2, lg: 2, xl: 2, xxl: 3, xxxl: 4 }"
+            :grid="{ gutter: 16, xs: 1, sm: 2, md: 2, lg: 3, xl: 4, xxl: 4, xxxl: 6 }"
             :pagination="pagination"
             :data-source="dataSource"
           >
@@ -62,14 +62,14 @@
               <a-list-item>
                 <a-card hoverable>
                   <template #cover>
-                    <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="height: 300px;" />
+                    <img alt="example" :src="item.thumbnail" style="height: 200px;" />
                   </template>
                   <template #actions>
                     <icon-delete />
                     <icon-edit  @click="handleEdit(item)"/>
                     <icon-ellipsis  />
                   </template>
-                  <a-card-meta :title="item.title">
+                  <a-card-meta :title="item.title || ''">
                     <template #description></template>
                   </a-card-meta>
                 </a-card>

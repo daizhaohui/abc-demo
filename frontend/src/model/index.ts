@@ -3,12 +3,7 @@ export interface IQueryState {
   line: string,
   station: string,
   category?: string,
-}
-
-
-export interface IQueryPagination<T>{
-  current: number,
-  pageSize: number
+  labeled?: string
 }
 
 export interface IVideo {
@@ -22,6 +17,7 @@ export interface IVideo {
   label: string;
   labeled: number;
   createTime: string;
+  thumbnail: string;
 }
 
 export interface IPicture {
@@ -35,4 +31,5 @@ export interface IPicture {
   label: string;
   labeled: number;
   createTime: string;
+  thumbnail: string;
 }

@@ -1,6 +1,16 @@
 
 import { reactive } from '@lincy-vue/core';
 
+type PageChange = (page: number, pageSize: number) => void;
+
+export interface IPagination {
+  current: number
+  pageSize: number
+  total: number
+  onChange: PageChange,
+  onShowSizeChange: PageChange
+}
+
 export default class PaginationUtil {
   // loadDataFunction为加载数据回调，参数为创建的pagination对象
   static createPagination (loadDataFunction: any) {

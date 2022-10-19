@@ -1,6 +1,7 @@
 import { defineComponent, reactive, ref, toRefs, onMounted } from '@lincy-vue/core';
 import Api from '@/api';
-import PaginationUtil from '@/utils/pagination';
+import { Message } from '@/components';
+import PaginationUtil, { IPagination } from '@/utils/pagination';
 import VideoModal from '@/components/videoModal';
 import DictionaryUtil, {ISelectionEntity, IAllDictionary } from '@/utils/dictionary';
 import { IQueryState, IVideo } from '@/model';
@@ -11,7 +12,7 @@ interface IState {
   areaOptions: ISelectionEntity[],
   lineOptions: ISelectionEntity[],
   stationOptions: ISelectionEntity[],
-  dataSource: IVideo[],
+  dataSource: IVideo[] | undefined | null,
 }
 
 export default defineComponent({
@@ -39,7 +40,7 @@ export default defineComponent({
       stationOptions: [],
       dataSource: []
     })
-    const pagination = PaginationUtil.createPagination((p: any) => { loadData(p); });
+    const pagination = PaginationUtil.createPagination((p: IPagination) => { loadData(p); });
 
     // 重置查询条件按钮事件
     const onReset = () => {
@@ -50,6 +51,7 @@ export default defineComponent({
 
     // 点击查询
     const onQuery = () => {
+      loadData(pagination);
     };
 
     //初始化下拉选择框
@@ -63,9 +65,38 @@ export default defineComponent({
       }
     };
 
-    const loadData = async (p?: any) => {
-      state.spinning = true;
+    const createQueryParams = (p: IPagination)=> {
+      const params = {
+        ...queryState,
+        current: p.current,
+        pageSize: p.pageSize
+      };
+      return params;
+    }
 
+    const loadData = async (p: IPagination) => {
+      const params = createQueryParams(p);
+      if (params.area) {
+        Message.warn('请选择地区条件！');
+        return;
+      }
+      try {
+        state.spinning = true;
+        const result = await Api.Video.getList({
+          params
+        })
+        if( result.data && result.data.code === Api.ResponseCode.Success) {
+          state.dataSource = result.data.data
+        } else {
+          Message.error(result.data.message || '加载失败,请稍后再试！');
+        } 
+        // 更新
+        state.spinning = false;
+      } catch (err) {
+        state.spinning = false;
+        Message.error('加载失败,请稍后再试！');
+        console.log(err);
+      }
       state.spinning = false;
     };
 
@@ -86,7 +117,7 @@ export default defineComponent({
 
     onMounted(() => {
       init();
-      loadData()
+      loadData(pagination);
     });
 
     return {

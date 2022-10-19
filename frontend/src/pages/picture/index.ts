@@ -58,6 +58,10 @@ export default defineComponent({
 
     // 点击查询
     const onQuery = () => {
+      if (!queryState.area) {
+        Message.warn('请选择地区条件！');
+        return;
+      }
       pagination.current = 1;
       loadData(pagination);
     };
@@ -87,7 +91,6 @@ export default defineComponent({
     const loadData = async (p: IPagination) => {
       const params = createQueryParams(p);
       if (!params.area) {
-        Message.warn('请选择地区条件！');
         return;
       }
       try {
@@ -134,8 +137,8 @@ export default defineComponent({
       }
     };
 
-    onMounted(() => {
-      init();
+    onMounted(async () => {
+      await init();
       loadData(pagination);
     });
 

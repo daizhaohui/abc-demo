@@ -7,14 +7,14 @@ import DictionaryUtil, {ISelectionEntity, IAllDictionary } from '@/utils/diction
 import { IQueryState, IPicture } from '@/model';
 interface IState {
   pictureModalVisible: boolean,
-  picture: IPicture | null,
+  pictureId: string,
   spinning: boolean,
   areaOptions: ISelectionEntity[],
   lineOptions: ISelectionEntity[],
   stationOptions: ISelectionEntity[],
   categoryOptions: ISelectionEntity[],
   labeledOptions: ISelectionEntity[],
-  dataSource: IPicture[] | undefined | null,
+  dataSource: IPicture[]
 }
 
 export default defineComponent({
@@ -36,7 +36,7 @@ export default defineComponent({
     });
     const state = reactive<IState>({
       pictureModalVisible: false,
-      picture: null,
+      pictureId: '',
       spinning: false,
       areaOptions: [],
       lineOptions: [],
@@ -112,7 +112,7 @@ export default defineComponent({
     };
 
     const handleEdit = (item: IPicture) => {
-      state.picture = item;
+      state.pictureId = item.id + '';
       state.pictureModalVisible = true;
     };
 
@@ -128,7 +128,10 @@ export default defineComponent({
     };
 
     const handleOnUpdate = (picture: IPicture) =>{
-
+      const index = state.dataSource?.findIndex(item=>item.id===picture.id);
+      if (index) {
+        state.dataSource[index] = picture;
+      }
     };
 
     onMounted(() => {

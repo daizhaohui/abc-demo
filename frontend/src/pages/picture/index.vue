@@ -4,7 +4,7 @@
     :show-back="false"
     :title="图片管理"
   >
-    <picture-modal v-model:visible="pictureModalVisible" :picture="picture"  @onUpdate="hanldeOnUpdate"/>
+    <picture-modal v-model:visible="pictureModalVisible" :id="pictureId"  @onUpdate="handleOnUpdate"/>
     <div
       class="picture-manage"
       :style="{height: contentHeight}"
@@ -85,6 +85,9 @@
                 <a-card hoverable>
                   <template #cover>
                     <img alt="example" :src="item.thumbnail" style="height: 200px;" />
+                    <div style="position: absolute;top:6px; left: 6px;" v-if="item.labeled+'' ==='1'">
+                      <img :src="$Images.Label" style="height: 30px; width: 30px;" alt="已打标签"/>
+                    </div>
                   </template>
                   <template #actions>
                     <icon-delete />

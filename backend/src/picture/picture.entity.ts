@@ -57,11 +57,17 @@ export class PictureEntity extends BaseEntity {
   category: string;
   @Column({ type: 'varchar', name: 'label' })
   @ApiProperty({
-    example: '(20,30)|(30,50)',
+    example: '20,30',
     description: '标签信息，多个以分隔号隔开',
     type: String,
   })
   label: string;
+  @Column({ type: 'varchar', name: 'key' })
+  @ApiProperty({
+    description: '关键字',
+    type: String,
+  })
+  key: string;
   @Column({ type: 'int', name: 'labeled' })
   @ApiProperty({
     example: '0:未打, 1:已打',

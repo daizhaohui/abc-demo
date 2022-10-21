@@ -7,6 +7,7 @@ import { IPicture } from '@/model'
 
 interface IPictureState {
   category: string,
+  key: string,
   categoryOptions: ISelectionEntity[],
   picture: IPicture | null | undefined
 }
@@ -29,6 +30,7 @@ export default defineComponent({
   setup (props: any, context: any) {
     const { emit } = context;
     const state: IPictureState = reactive({
+      key: '',
       category: '',
       categoryOptions: [],
       picture: null
@@ -45,7 +47,8 @@ export default defineComponent({
         },
         data: {
           ...state.picture,
-          category: state.category
+          category: state.category,
+          key: state.key
         } as IPicture
       });
       if(result.data && result.data.code === Api.ResponseCode.Success) {
@@ -74,10 +77,10 @@ export default defineComponent({
           id
         }
       });
-      debugger;
       if (result.data && result.data.code === Api.ResponseCode.Success ){
         state.picture = result.data.data;
         state.category = state.picture?.category || '';
+        state.key = state.picture?.key || '';
       }
     });
 

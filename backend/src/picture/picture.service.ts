@@ -73,6 +73,9 @@ export default class PictureService {
     if (body.label) {
       entity.label = body.label;
     }
+    if (body.key) {
+      entity.key = body.key;
+    }
     entity.labeled = 1;
     return await this.pictureRepository.save(entity);
   }

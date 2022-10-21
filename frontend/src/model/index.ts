@@ -32,6 +32,7 @@ export interface IPicture {
   labeled: number;
   createTime: string;
   thumbnail: string;
+  key: string;
 }
 
 export interface IQueryStatistics {

@@ -16,6 +16,8 @@
           style="width: 200px;"
         ></a-select>
         </div>
+        <div class="title">关键字:</div>
+        <div><a-input  v-model:value="key"/></div>
       </div>
       <div class="picture">
         <a-image

@@ -11,17 +11,17 @@ export default class TaskApi {
   }
 
   @Http('/task/statistics/area')
-  static async getAreaStatistics(): Promise<IResponsePaginationEntity<ITaskStatistics>> {
-    return createEmptyResponsePaginationEntity<ITaskStatistics>();
+  static async getAreaStatistics(): Promise<IResponseEntity<ITaskStatistics[]>> {
+    return createEmptyResponseEntity<ITaskStatistics[]>();
   }
 
   @Http('/task/statistics/line')
-  static async getLineStatistics(options: IRequestEntity<IQueryStatistics>): Promise<IResponsePaginationEntity<ITaskStatistics>> {
-    return createEmptyResponsePaginationEntity<ITaskStatistics>();
+  static async getLineStatistics(options: IRequestEntity<IQueryStatistics>): Promise<IResponseEntity<ITaskStatistics[]>> {
+    return createEmptyResponseEntity<ITaskStatistics[]>();
   }
 
   @Http('/task/statistics/station')
-  static async getStationStatistics(options: IRequestEntity<IQueryStatistics>): Promise<IResponsePaginationEntity<ITaskStatistics>> {
-    return createEmptyResponsePaginationEntity<ITaskStatistics>();
+  static async getStationStatistics(options: IRequestEntity<IQueryStatistics>): Promise<IResponseEntity<ITaskStatistics[]>> {
+    return createEmptyResponseEntity<ITaskStatistics[]>();
   }
 }

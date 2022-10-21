@@ -7,7 +7,7 @@ interface IState {
   spinning: boolean,
   areaChartOption: Record<string,any> | null,
   lineChartOption: Record<string,any> | null,
-  totalStatistics: ITaskStatistics | null,
+  totalStatistics: ITaskStatistics,
   lineSpinning: boolean,
   stationSpinning: boolean,
   lineArea: string,
@@ -20,7 +20,7 @@ interface IState {
 
 export default defineComponent({
   components: {
-    'echart-statistics ': ChartStatistics,
+    'echart-statistics': ChartStatistics,
   },
   props: {
   },
@@ -31,7 +31,7 @@ export default defineComponent({
       spinning: false,
       areaChartOption: null,
       lineChartOption: null,
-      totalStatistics: null,
+      totalStatistics: {} as ITaskStatistics,
       lineSpinning: false,
       stationSpinning: false,
       lineArea: '',
@@ -39,7 +39,7 @@ export default defineComponent({
       stationArea: '',
       stationLine: '',
       lineOptions: [],
-      stationChartOption: []
+      stationChartOption: null
     })
 
 
@@ -85,7 +85,7 @@ export default defineComponent({
       if(result.data && result.data.code === Api.ResponseCode.Success) {
         const areaStatistics: ITaskStatistics[] = result.data.data!;
         state.areaChartOption = {
-          source: areaStatistics.forEach(item => {
+          source: areaStatistics.map(item => {
             return [
               item.areaName,
               Math.round(100*item.labeled/item.total)
@@ -104,7 +104,7 @@ export default defineComponent({
       if(result.data && result.data.code === Api.ResponseCode.Success) {
         const lineStatistics = result.data.data;
         state.lineChartOption = {
-          source: lineStatistics!.forEach(item => {
+          source: lineStatistics!.map(item => {
             return [
               item.lineName,
               Math.round(100*item.labeled/item.total)
@@ -124,9 +124,9 @@ export default defineComponent({
       if(result.data && result.data.code === Api.ResponseCode.Success) {
         const stationStatistics = result.data.data;
         state.stationChartOption = {
-          source: stationStatistics!.forEach(item => {
+          source: stationStatistics!.map(item => {
             return [
-              item.lineName,
+              item.stationName,
               Math.round(100*item.labeled/item.total)
             ]
           })

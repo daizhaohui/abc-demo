@@ -21,8 +21,8 @@
           </a-row>
           <a-row class="row">
             <a-col :span="24">
-              <a-card title="按区域统计">
-                <echart-statistics id="areaContainer" :option="areaChartOption"  style="width:900px;height:200px;" />
+              <a-card title="按地区统计">
+                <echart-statistics id="areaContainer" :option="areaChartOption"  style="width:100%;height:360px;" />
               </a-card>
             </a-col>
           </a-row>
@@ -40,7 +40,7 @@
                         ></a-select>
                       </div>
                   </template>
-                  <echart-statistics id="lineContainer" :option="lineChartOption"  style="width:900px; height:300px;"/>
+                  <echart-statistics id="lineContainer" :option="lineChartOption"  style="width:900px; height:360px;"/>
                 </a-card>
               </a-spin>
             </a-col>
@@ -65,7 +65,7 @@
                     ></a-select>
                   </div>
                 </template>
-                <echart-statistics id="stationContainer" :option="stationChartOption"  style="width:300px; height:600px;" />
+                <echart-statistics id="stationContainer" :option="stationChartOption"  style="width:100%; height:360px;" />
               </a-card></a-spin></a-col>
           </a-row>
       </div>

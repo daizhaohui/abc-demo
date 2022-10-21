@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   AreaEntity,
   CategoryEntity,
-  LineyEntity,
+  LineEntity,
   StationEntity,
 } from './entities';
 
@@ -14,7 +14,7 @@ import {
     TypeOrmModule.forFeature([
       AreaEntity,
       CategoryEntity,
-      LineyEntity,
+      LineEntity,
       StationEntity,
     ]),
   ],

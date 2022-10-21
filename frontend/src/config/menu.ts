@@ -20,16 +20,16 @@ const menus = [
     parentId: '',
     children: [
       {
-        id: 'videoManage',
-        text: '视频管理',
-        parentId: 'systemManage',
-        route: 'video'// 路由名字
-      },
-      {
         id: 'pictureManage',
         text: '图片管理',
         parentId: 'systemManage',
         route: 'picture'// 路由名字
+      },
+      {
+        id: 'videoManage',
+        text: '视频管理',
+        parentId: 'systemManage',
+        route: 'video'// 路由名字
       },
       {
         id: 'taskManage',

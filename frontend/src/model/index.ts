@@ -33,3 +33,19 @@ export interface IPicture {
   createTime: string;
   thumbnail: string;
 }
+
+export interface IQueryStatistics {
+  area?: string,
+  line?: string,
+  station?: string,
+}
+export interface ITaskStatistics {
+  areaCode: string;
+  lineCode?: string;
+  stationCode?: string;
+  areaName?: string;
+  lineName?: string;
+  stationName?: string;
+  total: number;
+  labeled: number;
+}

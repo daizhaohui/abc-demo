@@ -8,7 +8,6 @@ export default {
     database: 'demo',
     entities: ['dist/**/*.entity{.ts,.js}'],
     synchronize: false,
-    retryTempts: 20,
-    retryDelay: 3000,
+    retryDelay: 20000,
   },
 };

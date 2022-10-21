@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('line')
-export default class LineyEntity extends BaseEntity {
+export default class LineEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ type: 'varchar', name: 'name' })

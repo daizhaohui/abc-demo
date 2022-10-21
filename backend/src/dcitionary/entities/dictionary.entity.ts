@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import AreaEntity from './area.entity';
-import LineyEntity from './line.entity';
+import LineEntity from './line.entity';
 import StationEntity from './station.entity';
 import CategoryEntity from './category.entity';
 
@@ -13,9 +13,9 @@ export default class DictionaryEntity {
 
   @ApiProperty({
     description: '所有地铁线',
-    type: [LineyEntity],
+    type: [LineEntity],
   })
-  lines: LineyEntity[];
+  lines: LineEntity[];
 
   @ApiProperty({
     description: '所有地铁站信息',

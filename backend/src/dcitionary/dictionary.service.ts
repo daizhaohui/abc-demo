@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import {
   AreaEntity,
   CategoryEntity,
-  LineyEntity,
+  LineEntity,
   StationEntity,
 } from './entities';
 
@@ -15,8 +15,8 @@ export default class DictionaryService {
     private areaRepository: Repository<AreaEntity>,
     @InjectRepository(CategoryEntity)
     private categoryRepository: Repository<CategoryEntity>,
-    @InjectRepository(LineyEntity)
-    private lineRepository: Repository<LineyEntity>,
+    @InjectRepository(LineEntity)
+    private lineRepository: Repository<LineEntity>,
     @InjectRepository(StationEntity)
     private stationRepository: Repository<StationEntity>,
   ) {}

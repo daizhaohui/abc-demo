@@ -50,6 +50,7 @@ import GlobalOutlined from '@ant-design/icons-vue/GlobalOutlined';
 import InfoCircleOutlined from '@ant-design/icons-vue/InfoCircleOutlined';
 import CaretUpOutlined from '@ant-design/icons-vue/CaretUpOutlined';
 import CaretDownOutlined from '@ant-design/icons-vue/CaretDownOutlined';
+import UploadOutlined from '@ant-design/icons-vue/UploadOutlined';
 
 // 命名前缀统一为icon-
 const IconComponents = {
@@ -140,6 +141,7 @@ const IconComponents = {
   'icon-info-circle': InfoCircleOutlined,
   'icon-caret-up': CaretUpOutlined,
   'icon-caret-down': CaretDownOutlined,
+  'icon-upload':UploadOutlined
 };
 
 // icons进行统一管理

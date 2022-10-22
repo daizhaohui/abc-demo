@@ -1,5 +1,11 @@
-import { defineComponent, watch, ref } from '@lincy-vue/core';
+import { defineComponent, watch, ref, reactive, toRefs } from '@lincy-vue/core';
 import VideoPlayer from '@/components/videoPlayer';
+
+interface IState {
+  url: string,
+  poster: string,
+  showDialog: boolean
+}
 
 export default defineComponent({
   components: {
@@ -18,22 +24,31 @@ export default defineComponent({
   },
   setup (props: any, context: any) {
     const { emit } = context;
-    const showDialog = ref(props.visible);
+    const state = reactive<IState>({
+      url: '',
+      poster: '',
+      showDialog: props.visible,
+    })
     const handleOk = () => {
 
     };
 
     watch(()=>props.visible, (v: boolean)=>{
-      showDialog.value = v;
+      state.showDialog = v;
     })
 
-    watch(showDialog, (v: boolean)=>{
+    watch(()=>props.video, ()=>{
+      state.url = props.video.url;
+      state.poster = props.video.poster;
+    })
+
+    watch(()=>state.showDialog, (v: boolean)=>{
       emit('update:visible', v);
     })
 
     return {
       handleOk,
-      showDialog
+      ...toRefs(state)
     }
   }
 

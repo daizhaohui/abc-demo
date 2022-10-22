@@ -19,8 +19,8 @@ export default defineComponent({
     const renderChart = ()=>{
       const op = {
         title : {
-          text: '完成百分比',
-          subtext: ''
+          text: '',
+          subtext: '完成百分比'
         },
         dataset: [
           {

@@ -2,7 +2,7 @@ import { defineComponent, reactive, ref, toRefs, onMounted } from '@lincy-vue/co
 import Api from '@/api';
 import { Message } from '@/components';
 import PaginationUtil, { IPagination } from '@/utils/pagination';
-import VideoModal from '@/components/videoModal';
+import VideoModal from './components/videoModal';
 import DictionaryUtil, {ISelectionEntity, IAllDictionary } from '@/utils/dictionary';
 import { IQueryState, IVideo } from '@/model';
 interface IState {

@@ -5,13 +5,14 @@
     :title="图片管理"
   >
     <picture-modal v-model:visible="pictureModalVisible" :id="pictureId"  @onUpdate="handleOnUpdate"/>
+    <upload-modal v-model:visible="uploadModalVisible" @onSuccess="handleUpload"/>
     <div
       class="picture-manage"
       :style="{height: contentHeight}"
     >
       <div class="list g-card-radius">
         <query-condition
-          :count="5"
+          :count="6"
           :model="queryState"
           @reset="onReset"
           @query="onQuery"
@@ -82,6 +83,17 @@
             </a-form-item>
           </template>
         </query-condition>
+        <div style="margin-top:">
+          <a-button
+              type="primary"
+              @click="handleShowUpload"
+            >
+              上传图片
+              <template #icon>
+                <icon-upload />
+              </template>
+          </a-button>
+        </div>
         <div style="margin-top:16px;">
           <a-list
             :grid="{ gutter: 16, xs: 1, sm: 2, md: 2, lg: 4, xl: 4, xxl: 6, xxxl: 8 }"

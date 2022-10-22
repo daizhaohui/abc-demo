@@ -3,10 +3,12 @@ import Api from '@/api';
 import { Message } from '@/components';
 import PaginationUtil, { IPagination } from '@/utils/pagination';
 import PictureModal from './components/pictureModal';
+import UploadModal from './components/upload';
 import DictionaryUtil, {ISelectionEntity, IAllDictionary } from '@/utils/dictionary';
 import { IQueryState, IPicture } from '@/model';
 interface IState {
   pictureModalVisible: boolean,
+  uploadModalVisible: boolean,
   pictureId: string,
   spinning: boolean,
   areaOptions: ISelectionEntity[],
@@ -20,6 +22,7 @@ interface IState {
 export default defineComponent({
   components: {
     'picture-modal': PictureModal,
+    'upload-modal': UploadModal
   },
   props: {
   },
@@ -45,6 +48,7 @@ export default defineComponent({
       categoryOptions: [],
       labeledOptions: [],
       dataSource: [],
+      uploadModalVisible: false,
     })
     const pagination = PaginationUtil.createListPagination((p: IPagination) => { loadData(p); }, {});
 
@@ -139,6 +143,14 @@ export default defineComponent({
       }
     };
 
+    const handleShowUpload = ()=>{
+      state.uploadModalVisible = true;
+    };
+
+    const handleUpload = ()=>{
+      loadData(pagination);
+    };
+
     onMounted(async () => {
       await init();
       loadData(pagination);
@@ -149,6 +161,8 @@ export default defineComponent({
       queryState,
       contentHeight,
       pagination,
+      handleUpload,
+      handleShowUpload,
       handleAreaChange,
       handleLineChange,
       handleEdit,

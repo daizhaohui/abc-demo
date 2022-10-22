@@ -4,7 +4,10 @@ import { Repository } from 'typeorm';
 import { PictureEntity } from './picture.entity';
 import { IPictureQueryCondition } from './index';
 import { IRequestPageEntity, IResponsePagingEntity } from '../common';
-
+import { S3 } from 'aws-sdk';
+import appConfig from '../app.config';
+import { v1 } from 'uuid';
+import { resolve } from 'path';
 @Injectable()
 export default class PictureService {
   constructor(
@@ -39,7 +42,7 @@ export default class PictureService {
         });
       }
       if (condition.params.key) {
-        query.andWhere('key like :key', {
+        query.andWhere('picture.key like :key', {
           key: `%${condition.params.key}%`,
         });
       }
@@ -83,5 +86,46 @@ export default class PictureService {
     }
     entity.labeled = 1;
     return await this.pictureRepository.save(entity);
+  }
+
+  /**
+   * upload file
+   */
+  async upload(file: any, body: any) {
+    const name = v1();
+    const s3 = new S3({
+      accessKeyId: appConfig.aws.s3.accessKeyId,
+      secretAccessKey: appConfig.aws.s3.secretAccessKey,
+    });
+    const params = {
+      Bucket: appConfig.aws.s3.bucket,
+      Key: name,
+      Body: file.buffer,
+    };
+
+    return new Promise((resolve, reject) => {
+      s3.upload(params, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          const picture = this.pictureRepository.create();
+          picture.area = body.area;
+          picture.title = body.title;
+          picture.line = body.line;
+          picture.station = body.station;
+          picture.url = data.Location;
+          picture.thumbnail = data.Location;
+          picture.createTime = new Date();
+          this.pictureRepository
+            .insert(picture)
+            .then((result: any) => {
+              resolve(result);
+            })
+            .catch((e) => {
+              reject(e);
+            });
+        }
+      });
+    });
   }
 }

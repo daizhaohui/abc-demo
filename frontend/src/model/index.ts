@@ -51,3 +51,11 @@ export interface ITaskStatistics {
   total: number;
   labeled: number;
 }
+
+export interface IUploadPicture {
+  title: string,
+  area: string,
+  line: string,
+  station: string,
+  file: any
+}

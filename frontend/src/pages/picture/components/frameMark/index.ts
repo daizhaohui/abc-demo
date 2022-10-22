@@ -1,8 +1,5 @@
 import { defineComponent, onMounted, reactive, toRefs, ref, nextTick, watch } from '@lincy-vue/core';
 import { RectDrawer, IDrawRect } from '@/utils/draw';
-import { number } from 'echarts';
-
-
 interface IState {
   markList: IDrawRect[],
   contentStyle: string
@@ -59,11 +56,13 @@ export default defineComponent({
         nextTick(() => {
           drawRects();
         });
-      },300);
+      },1000);
     };
 
     watch(()=>state.markList.length, ()=>{
-      emit('update:marks', state.markList);
+      nextTick(()=>{
+        emit('update:marks', state.markList);
+      });
     });
 
     watch(()=>props.marks, ()=>{

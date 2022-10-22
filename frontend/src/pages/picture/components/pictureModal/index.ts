@@ -72,6 +72,10 @@ export default defineComponent({
       }
     };
 
+    const handleClearMarks = ()=>{
+      state.rectMarks = [];
+    }
+
     const init = async () => {
       const dicionary = await DictionaryUtil.getAllDictionary();
       state.categoryOptions = dicionary.categories;
@@ -119,7 +123,8 @@ export default defineComponent({
       handleOk,
       showDialog,
       pictureWidth,
-      pictureHeight
+      pictureHeight,
+      handleClearMarks
     }
   }
 

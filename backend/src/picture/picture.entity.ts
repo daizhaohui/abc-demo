@@ -57,7 +57,8 @@ export class PictureEntity extends BaseEntity {
   category: string;
   @Column({ type: 'varchar', name: 'label' })
   @ApiProperty({
-    example: '{width: 800, height: 600, rects:[{left:10,top:20,width:100,height:100},{left:20,top:20,width:10,height:30}]',
+    example:
+      '{width: 800, height: 600, rects:[{left:10,top:20,width:100,height:100},{left:20,top:20,width:10,height:30}]',
     description: '图片比较框信息，以json字符串存储',
     type: String,
   })
@@ -68,7 +69,7 @@ export class PictureEntity extends BaseEntity {
     type: String,
   })
   key: string;
-  @Column({ type: 'int', name: 'labeled' })
+  @Column({ type: 'tinyint', name: 'labeled' })
   @ApiProperty({
     example: '0:未打, 1:已打',
     description: '是否已打标签',
@@ -76,10 +77,13 @@ export class PictureEntity extends BaseEntity {
   })
   labeled: number;
   @ApiProperty({
-    example: '2022-10-18 23:00:11',
+    example: '时间戳',
     description: '创建时间',
     type: String,
   })
-  @Column({ type: 'datetime', name: 'create_time' })
-  createTime: string;
+  @Column({
+    name: 'create_time',
+    type: 'datetime',
+  })
+  createTime: Date;
 }

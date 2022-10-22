@@ -2,7 +2,7 @@ import {
   Button, Input, Result, Divider, Row, Col, Layout, Space, Breadcrumb,
   Dropdown, Menu, PageHeader, Pagination, Checkbox, DatePicker, Form, Radio, Select, Switch,
   TreeSelect, Avatar, Badge, Card, Descriptions, Empty, List, Popconfirm, Popover, Table, Tabs, Tooltip,
-  Tree, Alert, Drawer, Modal, Spin, Image
+  Tree, Alert, Drawer, Modal, Spin, Image, Upload
 } from 'ant-design-vue';
 export default {
   Button,
@@ -41,5 +41,6 @@ export default {
   Drawer,
   Modal,
   Spin,
-  Image
+  Image,
+  Upload
 };

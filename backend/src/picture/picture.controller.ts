@@ -1,9 +1,20 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseInterceptors,
+  UploadedFile,
+  Res
+} from '@nestjs/common';
 import PictureService from './picture.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { IRequestPageEntity, ResponseEntity, ResponseUtil } from '../common';
 import { Logger, Injectable } from '@nestjs/common';
 import { IPictureQueryCondition } from '.';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('picture')
 @Injectable()
@@ -55,6 +66,9 @@ export default class PictureController {
     if (query.labeled) {
       queryConditon.params.labeled = query.labeled;
     }
+    if (query.key) {
+      queryConditon.params.key = query.key;
+    }
     const list = await this.pictureService.getList(queryConditon);
     return Promise.resolve(ResponseUtil.success(list));
   }
@@ -68,6 +82,20 @@ export default class PictureController {
       const result = await this.pictureService.save(parseInt(id), {
         ...body,
       });
+      return Promise.resolve(ResponseUtil.success(result));
+    } catch (err: any) {
+      this.logger.error(err);
+      return Promise.resolve(ResponseUtil.fail());
+    }
+  }
+
+  @Post('/upload')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiOperation({ summary: 'upload a picture to aws s3' })
+  @ApiResponse({ status: 200, description: 'upload a picture to aws s3' })
+  async upload(@UploadedFile() file, @Body() body): Promise<ResponseEntity> {
+    try {
+      const result = await this.pictureService.upload(file, body);
       return Promise.resolve(ResponseUtil.success(result));
     } catch (err: any) {
       this.logger.error(err);

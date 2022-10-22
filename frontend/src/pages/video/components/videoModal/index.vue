@@ -7,7 +7,7 @@
       @ok="handleOk"
     >
       <div style="height:100%; height:100%">
-        <video-player :url="video && video.url" :poster="video && video.url" ></video-player>
+        <video-player :url="url" :poster="poster" ></video-player>
       </div>
     </a-modal>
 </template>

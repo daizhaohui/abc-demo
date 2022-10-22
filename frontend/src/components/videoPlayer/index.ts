@@ -33,7 +33,7 @@ export default defineComponent({
       } catch {}
     }
 
-    watch(props.url, (url: string)=>{
+    watch(()=>props.url, (url: string)=>{
       destroyPalyer();
       initPlayer(url, props.poster);
     });

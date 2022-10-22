@@ -19,11 +19,8 @@
         <div class="title">关键字:</div>
         <div><a-input  v-model:value="key"/></div>
       </div>
-      <div class="picture">
-        <a-image
-            style="width: 480; height: 480px;"
-            :src="picture && picture.url"
-          />
+      <div class="picture" v-if="picture && picture.url">
+        <frame-mark :width="pictureWidth" :height="pictureHeight" :image="picture.url"  v-model:marks="rectMarks"/>
       </div>
     </div>
     </a-modal>

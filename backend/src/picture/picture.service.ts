@@ -38,6 +38,11 @@ export default class PictureService {
           labeled: condition.params.labeled,
         });
       }
+      if (condition.params.key) {
+        query.andWhere('key like :key', {
+          key: `%${condition.params.key}%`,
+        });
+      }
       return query;
     };
     const countQuery = createQuery(queryCondtion);

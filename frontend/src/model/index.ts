@@ -3,7 +3,8 @@ export interface IQueryState {
   line: string,
   station: string,
   category?: string,
-  labeled?: string
+  labeled?: string,
+  key?: string,
 }
 
 export interface IVideo {
@@ -28,7 +29,7 @@ export interface IPicture {
   line: string;
   station: string;
   category: string;
-  label: string;
+  label?: string;
   labeled: number;
   createTime: string;
   thumbnail: string;

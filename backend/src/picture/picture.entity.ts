@@ -57,8 +57,8 @@ export class PictureEntity extends BaseEntity {
   category: string;
   @Column({ type: 'varchar', name: 'label' })
   @ApiProperty({
-    example: '20,30',
-    description: '标签信息，多个以分隔号隔开',
+    example: '{width: 800, height: 600, rects:[{left:10,top:20,width:100,height:100},{left:20,top:20,width:10,height:30}]',
+    description: '图片比较框信息，以json字符串存储',
     type: String,
   })
   label: string;

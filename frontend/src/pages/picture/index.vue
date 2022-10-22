@@ -73,6 +73,14 @@
             ></a-select>
             </a-form-item>
           </template>
+          <template #condition6>
+            <a-form-item
+              label="关键字"
+              name="key"
+            >
+            <a-input v-model:value="queryState.key" />
+            </a-form-item>
+          </template>
         </query-condition>
         <div style="margin-top:16px;">
           <a-list

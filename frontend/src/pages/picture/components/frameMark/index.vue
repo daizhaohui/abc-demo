@@ -1,7 +1,7 @@
 <template>
  <div class="select-frame">
     <div id="content" :style="contentStyle">
-      <div id="mg-content">
+      <div id="img-content">
         <img id="labeled-image" :src="image" />
         <canvas id="canvas" ref="refCanvas"></canvas>
       </div>

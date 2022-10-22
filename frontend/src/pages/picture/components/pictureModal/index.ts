@@ -1,20 +1,25 @@
-import { defineComponent, watch, ref, onMounted, reactive, toRefs, nextTick } from '@lincy-vue/core';
+import { defineComponent, watch, ref, onMounted, reactive, toRefs } from '@lincy-vue/core';
 import VideoPlayer from '@/components/videoPlayer';
 import DictionaryUtil, { ISelectionEntity } from '@/utils/dictionary';
 import { Message } from '@/components';
+import FrameMark from  '../frameMark';
+
 import Api from '@/api';
 import { IPicture } from '@/model'
+import { IDrawRect } from '@/utils/draw';
 
-interface IPictureState {
+interface IState {
   category: string,
   key: string,
+  rectMarks: IDrawRect[]
   categoryOptions: ISelectionEntity[],
   picture: IPicture | null | undefined
 }
 
 export default defineComponent({
   components: {
-    VideoPlayer
+    VideoPlayer,
+    FrameMark
   },
   emits:["update:visible", "onUpdate"],
   props:{
@@ -29,12 +34,15 @@ export default defineComponent({
   },
   setup (props: any, context: any) {
     const { emit } = context;
-    const state: IPictureState = reactive({
+    const state: IState = reactive<IState>({
       key: '',
       category: '',
+      rectMarks: [],
       categoryOptions: [],
       picture: null
     });
+    const pictureWidth = 480;
+    const pictureHeight = 480;
     const showDialog = ref(props.visible);
     const handleOk = async () => {
       if (!state.category) {
@@ -48,7 +56,12 @@ export default defineComponent({
         data: {
           ...state.picture,
           category: state.category,
-          key: state.key
+          key: state.key,
+          label: state.rectMarks.length ? JSON.stringify({
+            width: pictureWidth,
+            height: pictureHeight,
+            rects: state.rectMarks
+          }):''
         } as IPicture
       });
       if(result.data && result.data.code === Api.ResponseCode.Success) {
@@ -81,6 +94,15 @@ export default defineComponent({
         state.picture = result.data.data;
         state.category = state.picture?.category || '';
         state.key = state.picture?.key || '';
+        if (state.picture?.label) {
+          try {
+            state.rectMarks = JSON.parse(state.picture.label).rects;
+          } catch {
+            state.rectMarks = [];
+          }
+        } else {
+          state.rectMarks = [];
+        }
       }
     });
 
@@ -95,7 +117,9 @@ export default defineComponent({
     return {
       ...toRefs(state),
       handleOk,
-      showDialog
+      showDialog,
+      pictureWidth,
+      pictureHeight
     }
   }
 

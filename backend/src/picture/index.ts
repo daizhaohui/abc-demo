@@ -9,6 +9,7 @@ export interface IPictureQueryCondition {
   station?: string;
   category?: string;
   labeled?: string;
+  key?: string;
 }
 
 export { PictureController, PictureService, PictureModule, PictureEntity };

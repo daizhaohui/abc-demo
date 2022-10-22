@@ -33,6 +33,7 @@ export default defineComponent({
       station: '',
       category: '',
       labeled: '',
+      key: '',
     });
     const state = reactive<IState>({
       pictureModalVisible: false,
@@ -54,6 +55,7 @@ export default defineComponent({
       queryState.station = '';
       queryState.category = '';
       queryState.labeled = '';
+      queryState.key = '';
     };
 
     // 点击查询

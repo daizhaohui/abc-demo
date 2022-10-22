@@ -6,9 +6,7 @@
       height = "600px"
       @ok="handleOk"
     >
-      <div style="height:100%; height:100%">
-        <video-player :url="url" :poster="poster" ></video-player>
-      </div>
+    <video-player :url="url" :poster="poster" ></video-player>
     </a-modal>
 </template>
 <script src="./index.ts" lang="ts"></script>

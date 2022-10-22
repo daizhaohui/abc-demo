@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%; height: 100%" id="video-player"></div>
+  <div id="video-player" style="width: 800px;height: 500px;"></div>
 </template>
 <script src="./index.ts" lang="ts"></script>
 

@@ -68,7 +68,7 @@
         >
           <a-button>
             <template #icon><icon-upload /></template>
-            Click to upload
+            选择图片
           </a-button>
         </a-upload>
       </a-form-item>

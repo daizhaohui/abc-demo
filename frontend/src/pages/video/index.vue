@@ -62,12 +62,14 @@
               <a-list-item>
                 <a-card hoverable>
                   <template #cover>
-                    <img alt="example" :src="item.thumbnail" style="height: 200px;" />
+                    <img alt="example" :src="item.thumbnail" style="height: 200px;" @click="handleEdit(item)"/>
                   </template>
                   <template #actions>
-                    <icon-delete />
+                    <a-popconfirm title="确定删除该视频吗?" @confirm="handleDelete()" okText="确定" cancelText="取消">
+                      <icon-delete />
+                    </a-popconfirm>
                     <icon-edit  @click="handleEdit(item)"/>
-                    <icon-ellipsis  />
+                    <icon-ellipsis/>
                   </template>
                   <a-card-meta :title="item.title || ''">
                     <template #description></template>

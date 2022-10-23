@@ -123,6 +123,10 @@ export default defineComponent({
       queryState.station = '';
     };
 
+    const handleDelete = ()=>{
+
+    };
+
     onMounted(async () => {
       await init();
       loadData(pagination);
@@ -137,7 +141,8 @@ export default defineComponent({
       handleLineChange,
       handleEdit,
       onReset,
-      onQuery
+      onQuery,
+      handleDelete
     };
   }
 });

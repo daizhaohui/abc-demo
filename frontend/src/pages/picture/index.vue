@@ -104,17 +104,17 @@
               <a-list-item>
                 <a-card hoverable>
                   <template #cover>
-                    <img alt="example" :src="item.thumbnail" style="height: 200px;" />
+                    <img alt="example" :src="item.thumbnail" style="height: 200px;"  @click="handleEdit(item)"/>
                     <div style="z-index:9999';position: absolute;top:6px; left: 6px;" v-if="item.labeled+'' ==='1'">
                       <img :src="$Images.Label" style="height: 30px; width: 30px;" alt="已打标签"/>
                     </div>
                   </template>
                   <template #actions>
-                    <a-popconfirm title="确定删除吗?" @confirm="handleDelete()" okText="确定" cancelText="取消">
+                    <a-popconfirm title="确定删除该图片吗?" @confirm="handleDelete()" okText="确定" cancelText="取消">
                       <icon-delete />
                     </a-popconfirm>
                     <icon-edit  @click="handleEdit(item)"/>
-                    <icon-ellipsis  />
+                    <icon-ellipsis  alt="开发中..."/>
                   </template>
                   <a-card-meta :title="item.title||''">
                     <template #description></template>

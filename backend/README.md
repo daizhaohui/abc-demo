@@ -43,3 +43,12 @@ docker build -f Dockerfile -t abc-demo-node .
 
 ```bash
 docker run -p 8002:8002 abc-demo-node
+```
+
+# view api document
+
+```bash
+npm run start
+
+http://127.0.0.1:8002/api
+```

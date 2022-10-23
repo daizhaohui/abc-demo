@@ -16,7 +16,7 @@ cd /var/mysql
 tar -xvf data.zip
 
 // start 
-docker run -p 3306:3306 -v /var/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=abc-demo -d abc-demo-mysql
+docker run -p 3306:3306 --network abc-demo-net --network-alias abc-demo-mysql -v /var/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=abc-demo -d abc-demo-mysql
 ```
 
 # create database

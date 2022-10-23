@@ -12,7 +12,7 @@ export default class SettingState {
   static currentMenuLayout: string;
 
   // 是否多tab页签
-  @Observable(1)
+  @Observable(0)
   static isTabsMode: boolean;
 
   // 是否显示页脚

@@ -16,5 +16,6 @@ docker build -f Dockerfile -t abc-demo-nginx .
 # start docker image
 
 ```bash
-docker run -p 8001:80 abc-demo-nginx
+docker run -p 80:80 --network abc-demo-net --network-alias abc-demo-nginx -d abc-demo-nginx
+
 ```

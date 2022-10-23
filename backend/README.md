@@ -42,7 +42,7 @@ docker build -f Dockerfile -t abc-demo-node .
 # start docker image
 
 ```bash
-docker run -p 8002:8002 abc-demo-node
+docker run -p 8002:8002 --network abc-demo-net --network-alias abc-demo-node -d abc-demo-node
 ```
 
 # view api document

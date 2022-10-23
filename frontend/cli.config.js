@@ -60,20 +60,20 @@ module.exports = (mode) => {
         deleteOriginalAssets: false
       },
       cdn: [
-        {
-          type: 'css',
-          match: false,
-          address: 'http://www.xxx.yyy/css'
-        },
-        {
-          type: 'js',
-          match: false,
-          // (name)=>{
-          //   if(name.indexOf('vendors')!==-1) return true;
-          //   return false;
-          // },
-          address: 'http://www.xxx.yyy/js'
-        }
+        // {
+        //   type: 'css',
+        //   match: false,
+        //   address: 'http://www.xxx.yyy/css'
+        // },
+        // {
+        //   type: 'js',
+        //   match: false,
+        //   // (name)=>{
+        //   //   if(name.indexOf('vendors')!==-1) return true;
+        //   //   return false;
+        //   // },
+        //   address: 'http://www.xxx.yyy/js'
+        // }
       ]
     };
   }

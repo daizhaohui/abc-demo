@@ -73,8 +73,8 @@
         </a-upload>
       </a-form-item>
       <a-form-item :wrapper-col="{ span: 24}" style="text-align:center;">
-        <a-button @click="handleCancel" class="cancel-btn">Cancel</a-button>
-        <a-button type="primary" html-type="submit">Submit</a-button>
+        <a-button @click="handleCancel" class="cancel-btn">取消</a-button>
+        <a-button type="primary" html-type="submit">提交</a-button>
       </a-form-item>
     </a-form>
       </div>

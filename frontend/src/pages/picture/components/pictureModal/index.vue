@@ -4,6 +4,8 @@
       title="给图片打标签"
       width = "800px"
       height = "880px"
+      okText="确定"
+      cancelText="取消"
       @ok="handleOk"
     >
     <div class="picture-edit">

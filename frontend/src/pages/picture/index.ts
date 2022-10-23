@@ -143,6 +143,10 @@ export default defineComponent({
       }
     };
 
+    const handleDelete = ()=>{
+      
+    };
+
     const handleShowUpload = ()=>{
       state.uploadModalVisible = true;
     };
@@ -168,7 +172,8 @@ export default defineComponent({
       handleEdit,
       onReset,
       onQuery,
-      handleOnUpdate
+      handleOnUpdate,
+      handleDelete
     };
   }
 });

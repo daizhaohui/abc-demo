@@ -110,7 +110,9 @@
                     </div>
                   </template>
                   <template #actions>
-                    <icon-delete />
+                    <a-popconfirm title="确定删除吗?" @confirm="handleDelete()" okText="确定" cancelText="取消">
+                      <icon-delete />
+                    </a-popconfirm>
                     <icon-edit  @click="handleEdit(item)"/>
                     <icon-ellipsis  />
                   </template>

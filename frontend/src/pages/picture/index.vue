@@ -105,7 +105,7 @@
                 <a-card hoverable>
                   <template #cover>
                     <img alt="example" :src="item.thumbnail" style="height: 200px;" />
-                    <div style="position: absolute;top:6px; left: 6px;" v-if="item.labeled+'' ==='1'">
+                    <div style="z-index:9999';position: absolute;top:6px; left: 6px;" v-if="item.labeled+'' ==='1'">
                       <img :src="$Images.Label" style="height: 30px; width: 30px;" alt="已打标签"/>
                     </div>
                   </template>

@@ -7,7 +7,6 @@ import { IRequestPageEntity, IResponsePagingEntity } from '../common';
 import { S3 } from 'aws-sdk';
 import appConfig from '../app.config';
 import { v1 } from 'uuid';
-import { resolve } from 'path';
 @Injectable()
 export default class PictureService {
   constructor(
@@ -78,12 +77,8 @@ export default class PictureService {
     if (body.category) {
       entity.category = body.category;
     }
-    if (body.label) {
-      entity.label = body.label;
-    }
-    if (body.key) {
-      entity.key = body.key;
-    }
+    entity.label = body.label || '';
+    entity.key = body.key || '';
     entity.labeled = 1;
     return await this.pictureRepository.save(entity);
   }
@@ -116,6 +111,7 @@ export default class PictureService {
           picture.url = data.Location;
           picture.thumbnail = data.Location;
           picture.createTime = new Date();
+          picture.labeled = 0;
           this.pictureRepository
             .insert(picture)
             .then((result: any) => {

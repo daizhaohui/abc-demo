@@ -1,7 +1,7 @@
 <template>
    <a-modal
       v-model:visible="showDialog"
-      title="Upload Picture"
+      title="上传图片"
       width = "600px"
       height = "880px"
       :footer="null"
@@ -46,7 +46,7 @@
         ></a-select>
       </a-form-item>
       <a-form-item
-        name="line"
+        name="station"
         label="地铁站"
         has-feedback
         :rules="[{ required: true, message: 'Please select station!' }]"

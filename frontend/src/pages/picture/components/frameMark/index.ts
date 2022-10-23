@@ -23,6 +23,10 @@ export default defineComponent({
     height: {
       type: Number,
       default: 600
+    },
+    id: {
+      type: String,
+      default: ''
     }
   },
   setup (props:any, {emit}) {
@@ -48,7 +52,7 @@ export default defineComponent({
           ctx.stroke();
         });
       }
-      rectDrawer.drawRect(cav, state.markList);
+      rectDrawer.drawRect(cav, ctx, state.markList);
     }
 
     const initCanvas = ()=>{
@@ -56,13 +60,18 @@ export default defineComponent({
         nextTick(() => {
           drawRects();
         });
-      },1000);
+      },600);
     };
 
     watch(()=>state.markList.length, ()=>{
       nextTick(()=>{
         emit('update:marks', state.markList);
       });
+    });
+
+    watch(()=>props.id, ()=>{
+      rectDrawer.clear();
+      drawRects();
     });
 
     watch(()=>props.marks, ()=>{

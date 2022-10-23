@@ -26,21 +26,31 @@ const defaultOptions: IDrawRectOptions = {
 
 export class RectDrawer{
   private options: IDrawRectOptions;
+  private ctx: any;
+  private cav: any;
   constructor(option?: IDrawRectOptions) {
     this.options = option ? {
       ...defaultOptions,
       ...option
     } : defaultOptions;
   }
+
+  clear() {
+    if(this.cav && this.ctx) {
+      this.ctx.clearRect(0, 0, this.cav.width, this.cav.height);
+    }
+  }
+
   /**
  * 绘制矩形
  * cav 画布， rects：矩形框集合   selectedIndex 选中矩形下标
  */
- drawRect(cav:any, rects: IDrawRect[], selectedIndex?:number) {
-  let ctx = cav.getContext('2d');
+ drawRect(cav:any, ctx: any, rects: IDrawRect[], selectedIndex?:number) {
   let x = 0; 
   let y = 0; 
 
+  this.ctx = ctx;
+  this.cav = cav;
   ctx.strokeStyle = this.options.strokeStyle;
   ctx.lineWidth = this.options.lineWidth;
   /*
@@ -151,7 +161,7 @@ export class RectDrawer{
 
     cav.onmouseout = ()=>{
       if (selectedIndex !== undefined) {
-        this.drawRect(cav, rects, selectedIndex);
+        this.drawRect(cav, ctx,rects, selectedIndex);
       }
     };
   }
@@ -213,7 +223,7 @@ private drawOnChanging(cav:any, ctx:any, rects: IDrawRect[], i: number, position
       }
       cav.onmouseout =  ()=> {
         this.reDrawRect(cav, ctx, rects);
-        this.drawRect(cav, rects)
+        this.drawRect(cav,ctx,rects)
       };
       this.deleteDraw(cav, ctx, rects, i);
   }
@@ -255,12 +265,12 @@ private drawNewRect (cav:any, ctx:any, rects: IDrawRect[]){
         rects.push(frame);
         this.reDrawRect(cav, ctx, rects);
         start = false
-        this.drawRect(cav, rects)
+        this.drawRect(cav,ctx,rects)
       } 
       else {
         this.reDrawRect(cav, ctx, rects);
         start = false
-        this.drawRect(cav, rects)
+        this.drawRect(cav, ctx,rects)
       }
     };
     cav.onmouseout = (eo: any)=>{
@@ -272,12 +282,12 @@ private drawNewRect (cav:any, ctx:any, rects: IDrawRect[]){
         rects.push(frame);
         this.reDrawRect(cav, ctx, rects);
         start = false;
-        this.drawRect(cav, rects)
+        this.drawRect(cav, ctx,rects)
       }
       else {
         this.reDrawRect(cav, ctx, rects);
         start = false
-        this.drawRect(cav, rects)
+        this.drawRect(cav,ctx,rects)
       }
     };
   }
@@ -295,7 +305,7 @@ private drawByJudgement(cav:any, ctx:any, rects: IDrawRect[], iem:any){
     this.reDrawRect(cav, ctx, rects, iem);
     cav.onmouseup = () => {
       this.reDrawRect(cav, ctx, rects, iem);
-      this.drawRect(cav, rects, iem);
+      this.drawRect(cav, ctx,rects, iem);
     };
     this.moveDrawRect(cav, ctx, rects, iem, x, y);
     this.deleteDraw(cav, ctx, rects, iem);
@@ -318,7 +328,7 @@ private moveDrawRect(cav:any, ctx:any, rects:IDrawRect[], i:number, x:number, y:
   }
   cav.onmouseup = ()=> {
     this.reDrawRect(cav, ctx, rects, i);
-    this.drawRect(cav, rects, i);
+    this.drawRect(cav, ctx, rects, i);
   };
 }
 
@@ -345,7 +355,7 @@ private deleteDraw(cav:any, ctx:any, rects:IDrawRect[], i?: number|null){
         }
         this.deleteDraw(cav, ctx, rects, null)
         this.reDrawRect(cav, ctx, rects);
-        this.drawRect(cav, rects);
+        this.drawRect(cav, ctx, rects);
       }
     }
   }

@@ -3,6 +3,10 @@ import { defineComponent, onMounted, watch, onUnmounted } from '@lincy-vue/core'
 export default defineComponent({
   components: {},
   props:{
+    visible: {
+      type: Boolean,
+      default: false
+    },
     url: {
       type: String,
       default: '',
@@ -16,15 +20,17 @@ export default defineComponent({
     let player: any = null;
 
     const initPlayer = (url: string, poster: string) => {
-      player = new window.HlsPlayer({
-        id: 'video-player', // 上面容器的id选择器
-        url,
-        autoplay: true, // 自动播放
-        poster,
-        playsinline: true,
-        height: '100%',
-        width: '100%'
-      });
+      if(!player) {
+        player = new window.HlsPlayer({
+          id: 'video-player', // 上面容器的id选择器
+          url,
+          autoplay: true, // 自动播放
+          playsinline: true,
+          width: '100%',
+          height: '100%',
+          videoInit: true
+        });
+      }
     }
 
     const destroyPalyer = () => {
@@ -34,9 +40,19 @@ export default defineComponent({
     }
 
     watch(()=>props.url, (url: string)=>{
-      destroyPalyer();
       initPlayer(url, props.poster);
+      player.src = props.url;
+      player.start(props.url);
     });
+
+    watch(()=>props.visible, ()=>{
+      if(props.visible) {
+        player && player.play();
+      } else {
+        player && player.pause();
+      }
+    });
+
     onMounted(() => {
       initPlayer(props.url, props.poster);
     });

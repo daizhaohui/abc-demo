@@ -1,7 +1,7 @@
 <template>
    <a-modal
       v-model:visible="showDialog"
-      title="上传图片"
+      title="给图片打标签"
       width = "800px"
       height = "880px"
       @ok="handleOk"
@@ -21,7 +21,7 @@
         <div class="clear-btn"><a-button @click="handleClearMarks"  type="primary" :disabled="rectMarks.length<=0" >清空标记框</a-button></div>
       </div>
       <div class="picture" v-if="picture && picture.url">
-        <frame-mark :width="pictureWidth" :height="pictureHeight" :image="picture.url"  v-model:marks="rectMarks"/>
+        <frame-mark :width="pictureWidth" :height="pictureHeight" :image="picture.url"  v-model:marks="rectMarks" :id="picture.id"/>
       </div>
     </div>
     </a-modal>

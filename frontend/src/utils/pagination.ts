@@ -29,6 +29,7 @@ export default class PaginationUtil {
         pagination.pageSize = size;
         loadDataFunction(pagination);
       },
+      showTotal: (total: number) => `Total ${total} items`,
       ...options
     });
     return pagination;
@@ -36,8 +37,8 @@ export default class PaginationUtil {
 
   static createListPagination(loadDataFunction: OnPageChange, options:any) {
     return PaginationUtil.createPagination(loadDataFunction, {
-      pageSizeOptions: ['16', '32', '64', '80'],
-      pageSize: 16,
+      pageSizeOptions: ['24', '48', '96'],
+      pageSize: 24,
       ...options,
     })
   }

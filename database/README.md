@@ -18,3 +18,6 @@ tar -xvf data.zip
 // start 
 docker run -p 3306:3306 -v /var/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=abc-demo -d abc-demo-mysql
 ```
+
+# create database
+connect database and execute script.sql

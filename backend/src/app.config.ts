@@ -14,8 +14,8 @@ export default {
     s3: {
       url: 'https://daizhaohui-abc-demo.s3.ca-central-1.amazonaws.com/*',
       bucket: 'daizhaohui-abc-demo',
-      accessKeyId: 'AKIA2AHBTNFPQ22P6PNJ',
-      secretAccessKey: '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',
+      accessKeyId: 'AKIA2AHBTNFPUYSL52F2',
+      secretAccessKey: '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'
     },
   },
   port: 8002,

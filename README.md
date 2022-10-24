@@ -26,14 +26,30 @@ docker pull daizhaohui/abc-demo-mysql
 docker network create abc-demo-net
  ```
 
-## copy database data 
+## create demo database
 
 ```
-// install git 
-sudo yum -y install git
-git clone https://github.com/daizhaohui/abc-demo-data.git
-sudo tar -zcf ./abc-demo-data/data.zip /var/mysql/data
+// start 
+docker run -p 3306:3306 --network abc-demo-net --network-alias abc-demo-mysql -v /var/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=abc-demo -d daizhaohui/abc-demo-mysql
 
+// find daizhaohui/abc-demo-mysql container id
+docker ps
+
+// enter into container
+docker exec [container id] -it /bin/bash
+
+// create database 
+mysql -u root -p    (input password: abc-demo)
+create database demo;   
+use demo;
+source /tmp/script.sql;
+// exit mysql
+exit
+
+// exit container
+exit
+// kill daizhaohui/abc-demo-mysql container 
+docker kill [container id]
 
 ```
 ## start docker images by below sequence

@@ -1,8 +1,7 @@
 export default {
   db: {
     type: 'mysql',
-    host: 'abc-demo-mysql', // demo-mysql为容器网络别名,用于容器部署。 本地运行可以修改为localhost，或在host文件中添加127.0.0.1 abc-demo-mysql
-    // host: 'localhost',
+    host: 'abc-demo-mysql',
     port: 3306,
     username: 'root',
     password: 'abc-demo',

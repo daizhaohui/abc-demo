@@ -18,4 +18,5 @@ export default {
       secretAccessKey: 'cBW1S0xJEYdnkfnPis1kEfU5ow4zI5rKkqpGsmaG',
     },
   },
+  port: 8002,
 };

@@ -4,7 +4,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY . .
 # npm 安装依赖
-RUN npm install
+RUN yarn install
 # 打包
 RUN npm run build
 CMD ["node", "dist/main.js"]

@@ -11,7 +11,6 @@ export default {
     retryDelay: 20000,
   },
   aws: {
-    //AKIA2AHBTNFPUYSL52F2,Qhg7KCVz5eQvyEqCYxvnhNFrnRRsZ4ql8qTFy3QP//
     s3: {
       url: 'https://daizhaohui-abc-demo.s3.ca-central-1.amazonaws.com/*',
       bucket: 'daizhaohui-abc-demo',

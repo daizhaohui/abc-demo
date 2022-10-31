@@ -52,3 +52,11 @@ npm run start
 
 http://127.0.0.1:8002/api
 ```
+
+
+ENV_DB_TYPE
+ENV_DB_HOST
+ENV_DB_DATABASE
+ENV_DB_USERNAME
+ENV_DB_PASSWORD
+

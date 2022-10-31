@@ -6,7 +6,7 @@ import { DictionaryModule } from './dcitionary';
 import { VideoModule } from './video';
 import { PictureModule } from './picture';
 import { TaskModule } from './task';
-import AppConfig from './app.config';
+import {getDbConfig} from './common'
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import AppConfig from './app.config';
     DictionaryModule,
     VideoModule,
     TaskModule,
-    TypeOrmModule.forRoot(AppConfig.db as TypeOrmModuleOptions), // database
+    TypeOrmModule.forRoot(getDbConfig() as TypeOrmModuleOptions), // database
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -36,7 +36,7 @@ docker run -p 3306:3306 --network abc-demo-net --network-alias abc-demo-mysql -v
 docker ps
 
 // enter into container
-docker exec [container id] -it /bin/bash
+docker exec [container id] -it /bin/sh
 
 // create database 
 mysql -u root -p    (input password: abc-demo)

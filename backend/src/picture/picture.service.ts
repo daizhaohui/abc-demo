@@ -6,6 +6,7 @@ import { IPictureQueryCondition } from './index';
 import { IRequestPageEntity, IResponsePagingEntity } from '../common';
 import { S3 } from 'aws-sdk';
 import appConfig from '../app.config';
+import { getS3Config } from '../common'
 import { v1 } from 'uuid';
 @Injectable()
 export default class PictureService {
@@ -88,12 +89,13 @@ export default class PictureService {
    */
   async upload(file: any, body: any) {
     const name = v1();
+    const s3Config = getS3Config();
     const s3 = new S3({
-      accessKeyId: appConfig.aws.s3.accessKeyId,
-      secretAccessKey: appConfig.aws.s3.secretAccessKey,
+      accessKeyId: s3Config.accessKeyId,
+      secretAccessKey: s3Config.secretAccessKey,
     });
     const params = {
-      Bucket: appConfig.aws.s3.bucket,
+      Bucket: s3Config.bucket,
       Key: name,
       Body: file.buffer,
     };

@@ -11,6 +11,14 @@ export interface IDbConfig {
   database: string;
   [key:string]: string | number | string[] | boolean
 }
+
+export interface IS3Config {
+  bucket: string,
+  accessKeyId: string,
+  secretAccessKey: string
+  [key:string]: string | number | string[] | boolean
+}
+
 export interface IResponsePagingEntity<T> {
   current: number;
   total: number;
@@ -45,6 +53,21 @@ export function getDbConfig(): IDbConfig {
   if(process.env.ENV_DB_PASSWORD) {
     db.password = process.env.ENV_DB_PASSWORD;
   }
-  console.log(db);
   return db;
+}
+
+export function getS3Config(): IS3Config {
+  const s3 = {
+    ...appConfig.aws.s3
+  }
+  if(process.env.ENV_S3_BUCKET) {
+    s3.bucket = process.env.ENV_S3_BUCKET;
+  }
+  if(process.env.ENV_S3_ID) {
+    s3.accessKeyId = process.env.ENV_S3_ID;
+  }
+  if(process.env.ENV_S3_KEY) {
+    s3.secretAccessKey = process.env.ENV_S3_KEY;
+  }
+  return s3;
 }

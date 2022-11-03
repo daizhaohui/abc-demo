@@ -33,7 +33,7 @@ docker pull daizhaohui/abc-demo-node:1.0
 
 ```bash
 docker network create abc-demo-net
-docker run -dit -p 8002:8002 --network abc-demo-net --network-alias abc-demo-node --env ENV_DB_HOST=abc-demo-db.cluster-cg3ricvqifqx.ap-northeast-2.rds.amazonaws.com  --env ENV_DB_USERNAME=admin  --env ENV_DB_PASSWORD=admin123 --env ENV_DB_DATABASE=demo  -d daizhaohui/abc-demo-node:1.0
+docker run -dit -p 8002:8002 --network abc-demo-net --network-alias abc-demo-node --env ENV_DB_HOST=abc-demo-db.cluster-cg3ricvqifqx.ap-northeast-2.rds.amazonaws.com --env ENV_DB_USERNAME=admin  --env ENV_DB_PASSWORD=admin123 --env ENV_DB_DATABASE=demo  -d daizhaohui/abc-demo-node:1.0
 docker run -p 80:80 --network abc-demo-net --network-alias abc-demo-nginx -d daizhaohui/abc-demo-nginx
 ```
 
@@ -54,10 +54,10 @@ ENV_S3_ID
 ENV_S3_KEY -->
 
 abc-demo-nginx
-daizhaohui/abc-demo-nginx
+daizhaohui/abc-demo-nginx:1.0
 80:80
 // links
-abc-demo-node:abc-demo-node
+cd
 
 
 
